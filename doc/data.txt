@@ -1,0 +1,12 @@
+地址：120.78.158.132:8088
+
+有数据的账号
+	商家SQL：	SELECT
+					u.*
+				FROM
+					tb_businesses AS b
+				JOIN fw_user AS u ON u.u_id = b.b_u_id
+				WHERE
+					u.u_password = "e10adc3949ba59abbe56e057f20f883e";
+	商家：13923228070  pass：123456
+
