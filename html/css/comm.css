@@ -1,0 +1,133 @@
+header{
+	position: fixed;
+	top: 0;
+	width: 7.5rem;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	z-index: 1;
+	background: #FAFAFA;
+}
+header ,footer{
+	height: .88rem;
+}
+header>span{
+	display: block;
+	font-weight: normal;
+	letter-spacing: 0.04rem;
+}
+header>img{
+	display: block;
+	height: 0.88rem;
+	
+}
+header>.sp-inco-1,.sp-inco-2{
+	display: block;
+	height: .88rem;
+	width: 1.5rem;
+}
+header>.sp-inco-1>.inco{
+	display: block;
+	height: .88rem;
+	width: 0.5rem;
+	background: url(../img/返回@2x.png) no-repeat;
+	background-size: .5rem .88rem;
+}
+header>.sp-inco-2>.inco:nth-child(1){
+	display: block;
+	height: .88rem;
+	width: 0.5rem;
+	margin-right: .5rem;
+	background: url(../img/头部_分享@2x.png) no-repeat;
+	background-size: .5rem .88rem;
+}
+
+
+
+.main{
+	max-width: 7.5rem;
+	position: relative;
+	/*height: 100%;*/
+	width: 100%;
+	background: #F2F2F2;
+	margin: 0 auto;
+	/*margin: 0 auto .3rem auto;*/
+	border-top: 0.005rem solid #F2F2F2;
+	border-bottom: 0.005rem solid #F2F2F2;
+}
+
+
+footer{
+	position: fixed;
+   	width: 7.5rem;
+   	height: .98rem;
+   	left: 0;
+   	right: 0;
+   	margin: 0 auto;
+	background: #FFF;
+	bottom: 0;
+	z-index: 1000;
+	border-top: .01rem solid #D9D9D9;
+}
+.foot-main>.ft-ff1{
+	height: .97rem;
+	width: 4.8rem;
+	margin-left: .3rem;
+}
+.foot-main>.ft-ff1>span{
+	font-size: .28rem;
+	color: #F35656;
+	letter-spacing: .02rem;
+}
+.foot-main>.ft-ff2{
+	height: .97rem;
+	width: 2.7rem;
+	background: #f35656;
+}
+.foot-main>.ft-ff2>span{
+	font-size: 0.36rem;
+	color: #FFF;
+}
+.foot-main>.ft-ff1>.assess-infomation{
+	height: 100%;
+	margin-left: .3rem;
+}
+.foot-main>.ft-ff1>.assess-infomation>div{
+/*	background: yellowgreen;*/
+	/*margin-right: 1rem;*/
+}
+.foot-main>.ft-ff1>.assess-infomation>div>img{
+	width: .4rem;
+	height: .4rem;
+}
+.foot-main>.ft-ff1>.assess-infomation>div>span{
+	font-size: .2rem;
+	color: #333;
+	margin-top: .06rem;
+}
+.assess-infomation-marginleft{
+	margin-left: 1rem;
+}
+/*footer>.ic-me{
+	flex: 1;
+	display: flex;
+}
+footer>.ic-me>.f-inco{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+footer>.ic-me>.f-inco>.ic-up{
+	display: flex;
+	flex: 2;
+}
+footer>.ic-me>.f-inco>.ic-up>img{
+	display: block;
+	width: 0.42rem;
+}
+footer>.ic-me>.f-inco>.ic-dn{
+	flex: 1;
+	color: #FFF;
+	font-size: 0.36rem;
+}
+*/

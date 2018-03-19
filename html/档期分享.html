@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+		<script type="text/javascript" src="js/view.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		<header class="dis-flex box-between">
+				<span class="sp-inco-1">
+					<span class="inco"></span>
+				</span>
+				<span>我的订单</span>
+				<span class="sp-inco-2 dis-flex box-ju-end">
+					<!--<span class="inco"></span>-->
+					<!--<span class="inco"></span>-->
+				</span>
+		</header>
+		<section class="main-calender my-border-top2">
+			<div class="calender-center">
+				<div class="calender-year dis-flex box-center">
+					<div class="year dis-flex">
+						<div id="prev-time" class="y-left dis-flex box-center">
+							<img src="img/上一步.png"/>
+						</div>
+						<div id="local-time" class="time dis-flex box-center">
+							<span id="year-time">2017</span>
+							<span>年</span>
+							<span id="month-time">12</span>
+							<span>月</span>
+						</div>
+						<div id="next-time" class="y-right dis-flex box-center">
+							<img src="img/下一步.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="calender-week dis-flex week-backgroundF9">
+					<div></div>
+					<div class="week-backgroundF3"></div>
+					<div></div>
+					<div class="week-backgroundF3"></div>
+					<div></div>
+					<div class="week-backgroundF3"></div>
+					<div></div>
+				</div>
+				<div class="calender-week dis-flex" style="margin-bottom: .3rem;">
+					<div>周日</div>
+					<div>周一</div>
+					<div>周二</div>
+					<div>周三</div>
+					<div>周四</div>
+					<div>周五</span></div>
+					<div>周六</div>
+				</div>
+				<div id="calender-day-id" class="calender-day">
+					<!--<div class="group dis-flex">
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+					</div>
+					<div class="group dis-flex">
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+					</div>
+					<div class="group dis-flex">
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-backgroundF3">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+					</div>
+					<div class="group dis-flex">
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-background4B">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+					</div>
+					<div class="group dis-flex ">
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-background4B">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center dis-flex box-center">
+								<span class="up-number week-font-size32">30</span>
+							</div>
+						</div>
+						<div class="group-one">
+							<div class="group-center group-align-self week-background4B">
+								<p class="week-font-size32">12</p>
+								<p class="week-font-size20" style="margin-top:-0.08rem;">广州</p>
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</section>
+		<section class="main">
+			<div class="my-width750 my-margin-top my-backgound-FFF" style="margin: 0 auto;">
+				<nav class="or-menu dis-flex box-between my-width630">
+					<span class="tab-menu my-font-color-F35353">当场出演</span>
+					<span class="tab-menu">最近活动</span>
+					<span class="tab-menu">个人档期</span>
+				</nav>
+			</div>
+			<div id="tab-menu1" class="tab-menu-list my-width750 my-backgound-F2F2F2 my-border-tb" style="margin: 0 auto;">
+				<div class="or-list my-border-top2">
+					<div class="or-phone dis-flex">
+						<div class="or-phone-lr or-phone-l dis-flex box-al-center">
+							<span class="ph-inco"></span>
+							<spqn class="ph-number">18850541602</spqn>
+						</div class="or-phone-lr or-phone-r">
+						<div class="or-phone-lr or-phone-r dis-flex box-al-center box-ju-end">
+							<spqn class="ph-button">艺人信息</spqn>
+						</div>
+					</div>
+					<div class="or-comment">
+						<div class="or-info dis-flex box-al-center">
+							<div class="or-info-a dis-flex box-al-center">
+								<div class="info-pic">
+									<img src="img/2345截图20171212155719.jpg" alt="" />
+								</div>
+								<div class="info-desc dis-flex box-column">
+									<div class="dis-flex"><span>广州白云区皇家8号酒吧的演出</span></div>
+									<div class="dis-flex">
+										<span>出场费:</span>
+										<span>￥5000</span>
+										<span>保证金:</span>
+										<span>￥5000</span>
+									</div>
+									<div class="dis-flex">
+										<span>角色:</span>
+										<span>歌手</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="or-info-ads dis-flex">
+							<div class="or-info-lr dis-flex box-al-center">
+								<span class="info-in"></span>
+								<span class="info-ads">广东省广州市白云区</span>
+							</div>
+							<div class="or-info-lr dis-flex box-al-center box-ju-end">
+								<p class="week-font-size20 my-margin-rigth my-font-color-666">2015.04.22</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="or-list b-mag">
+					<div class="or-phone dis-flex">
+						<div class="or-phone-lr or-phone-l dis-flex box-al-center">
+							<span class="ph-inco"></span>
+							<spqn class="ph-number">18850541602</spqn>
+						</div class="or-phone-lr or-phone-r">
+						<div class="or-phone-lr or-phone-r dis-flex box-al-center box-ju-end">
+							<spqn class="ph-button">艺人信息</spqn>
+						</div>
+					</div>
+					<div class="or-comment">
+						<div class="or-info dis-flex box-al-center">
+							<div class="or-info-a dis-flex box-al-center">
+								<div class="info-pic">
+									<img src="img/2345截图20171212155719.jpg" alt="" />
+								</div>
+								<div class="info-desc dis-flex box-column">
+									<div class="dis-flex"><span>广州白云区皇家8号酒吧的演出</span></div>
+									<div class="dis-flex">
+										<span>出场费:</span>
+										<span>￥5000</span>
+										<span>保证金:</span>
+										<span>￥5000</span>
+									</div>
+									<div class="dis-flex">
+										<span>角色:</span>
+										<span>歌手</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="or-info-ads dis-flex">
+							<div class="or-info-lr dis-flex box-al-center">
+								<span class="info-in"></span>
+								<span class="info-ads">广东省广州市白云区</span>
+							</div>
+							<div class="or-info-lr dis-flex box-al-center box-ju-end">
+								<p class="week-font-size20 my-margin-rigth my-font-color-666">2015.04.22</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="tab-menu2" class="tab-menu-list my-width750 my-backgound-FFF active" style="margin: 0 auto;">
+				暂无数据
+			</div>
+			<div id="tab-menu3" class="tab-menu-list my-width750 my-backgound-FFF active" style="margin: 0 auto;">
+				暂无数据
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript" src="js/zepto.min.js" ></script>
+	<script type="text/javascript" src="js/touch.js" ></script>
+	<script type="text/javascript" src="js/my2.js"></script>
+	<script>
+	</script>
+</html>

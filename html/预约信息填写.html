@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/reset.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/mui.picker.min.css" />
+	</head>
+	<body>
+		<header class="dis-flex box-between my-border-bottom">
+			<span class="sp-inco-1">
+				<span class="inco"></span>
+			</span>
+			<span>我的订单</span>
+			<span class="sp-inco-2 dis-flex box-ju-end">
+				<!--<span class="inco"></span>-->
+				<!--<span class="inco"></span>-->
+			</span>
+		</header>
+		<section class="main">
+			<div class="m-publish">
+				<div class="bu-a">
+					<div class="bu-a-map box-boder-height100 dis-flex box-al-center box-between">
+						<div class="c-name my-margin-left"></div>
+						<div class="c-comment dis-flex box-al-center box-ju-end">
+							<div class="f-f1 my-font-size my-margin-rigth">推给附近的人</div>
+							<!--mui-active 表示打开或者关闭	-->
+							<div class="f-f2 mui-switch mui-switch-mini mui-active my-margin-rigth">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="m-publish my-margin-top">
+				<div class="bu-b">
+					<div class="bu-b-name the-same">
+						<div class="c-name the-same-font">活动名称</div>
+						<div class="c-comment my-margin-rigth my-h100  dis-flex box-al-center">
+							<input type="text" name="" id="" value="" dir="rtl" class="my-h100" placeholder="请填写活动名称"/>
+						</div>
+					</div>
+					<div class="bu-b-time the-same">
+						<div class="c-name the-same-font">演出时间</div>
+						<div id="city-time" class="c-comment the-same-comment my-h100">
+							<div class="my-font-size">2017-05-09</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+					<div class="bu-b-ads the-same">
+						<div class="c-name the-same-font">演出地址</div>
+						<div id="city-text" class="c-comment the-same-comment my-h100">
+							<div class="my-font-size">演出地址</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="m-publish my-margin-top">
+				<div class="pu-cc-comment">
+					<div class="pu-c-sex the-same">
+						<div class="c-name the-same-font">性别</div>
+						<div id="sex_picker" class="c-comment the-same-comment">
+							<div class="my-font-size">男</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+					<div class="pu-c-role the-same">
+						<div class="c-name the-same-font">角色</div>
+						<div id="select-role" class="c-comment the-same-comment">
+							<div class="my-font-size my-text-overflow">女星组合,港星组合 ...</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+					<div class="pu-c-number the-same">
+						<div class="c-name the-same-font">人数</div>
+						<div class="c-comment the-same-comment">
+							<div class="my-font-size my-h100  my-margin-rigth-6m dis-flex box-al-center">
+								<input type="text" name="" id="" value="20" dir="rtl"  class="my-h100 my-width100"/>
+							</div>
+							<div class="my-font-size">人</div>
+						</div>
+					</div>
+					<div class="pu-c-price the-same">
+						<div class="c-name the-same-font">价格</div>
+						<div class="c-comment the-same-comment">
+							<!--<div class="my-font-size" style="color: red;">￥100</div>-->
+							<div class="my-font-size my-margin-rigth-6">￥</div>
+							<div class="my-font-size my-h100 dis-flex box-al-center	">
+								<input type="text" name="" id="" value="4500" dir="rtl"  class="my-h100 my-width100"/>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="m-publish my-margin-top">	
+				<div class="pu-dc-comment">
+					<div class="pu-d-boon the-same">
+						<div class="c-name the-same-font">我给你出的福利</div>
+						<div class="c-comment the-same-comment">
+							<div class="my-font-size">女星组合,港星组合 ...</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+					<div class="bu-d-info the-same">
+						<div class="c-name the-same-font">演出详情（选）</div>
+						<div class="c-comment the-same-comment">
+							<div class="my-font-size">女星组合,港星组合 ...</div>
+							<div class="my-backgound-pic"></div>
+						</div>
+					</div>
+					<div class="bu-d-info the-same no-border">
+						<div class="c-name the-same-font">添加一张图片</div>
+						<div class="c-comment the-same-comment">
+						</div>
+					</div>
+					<div class="bu-d-info the-upload-p">
+						<div class="c-name the-upload-c">
+							<img src="img/添加照片@2x.png"/>
+							<input type="file" class="upload-file" name="" id="" value="" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-sibmit dis-flex box-center">
+				<span>发布</span>
+			</div>
+		</section>
+		<!--选择角色-->
+		<section class="main my-h100 active">
+			<div class="main-role">
+				<div class="role-title dis-flex">
+					<span>价格</span>
+					<span>(单位: 元)</span>
+				</div>
+				<div class="role-comment">
+					<div class="rc-tile dis-flex box-center"><span>不限</span></div>
+					<div class="rc-comment">
+						<div class="re-commnt-center">
+							<div class="role-t">dfdfdfdfdfsfds</div>
+							<div class="role-t">大幅度反对法的</div>
+							<div class="role-t">1</div>
+							<div class="role-t">大幅度</div>
+							<div class="role-t">大幅答复</div>
+							<div class="role-t">的</div>
+							<div class="role-t">对方对方的</div>
+							<div class="role-t">大幅答复</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="role-sibmit" class="btn-sibmit dis-flex box-center">
+				<span>发布</span>
+			</div>
+		</section>
+		<!--<div class="mui-switch mui-switch-mini mui-active ">
+			<div class="mui-switch-handle"></div>
+		</div>-->
+		<script type="text/javascript" src="js/view.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/zepto.min.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script type="text/javascript" src="js/mui.picker.min.js" ></script>
+		<script type="text/javascript" src="js/data.city.js" ></script>
+		<script type="text/javascript" src="js/my.js" ></script>
+	</body>
+</html>

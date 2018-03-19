@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<!--<link rel="stylesheet" href="css/mui.min.css" />-->
+		<link rel="stylesheet" href="css/reset.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" charset="UTF-8"></script>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<header class="dis-flex box-between">
+			<span class="sp-inco-1">
+				<span class="inco"></span>
+			</span>
+			<span>选择角色</span>
+			<span class="sp-inco-2 dis-flex box-ju-end">
+				<!--<span class="inco"></span>-->
+				<!--<span class="inco"></span>-->
+			</span>
+		</header>
+		<section class="main my-h100">
+			<div class="main-role">
+				<div class="role-title dis-flex">
+					<span>价格</span>
+					<span>(单位: 元)</span>
+				</div>
+				<div class="role-comment">
+					<div class="rc-tile dis-flex box-center"><span>不限</span></div>
+					<div class="rc-comment">
+						<div class="re-commnt-center">
+							<div class="role-t">dfdfdfdfdfsfds</div>
+							<div class="role-t">大幅度反对法的</div>
+							<div class="role-t">1</div>
+							<div class="role-t">大幅度</div>
+							<div class="role-t">大幅答复</div>
+							<div class="role-t">的</div>
+							<div class="role-t">对方对方的</div>
+							<div class="role-t">大幅答复</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="btn-sibmit dis-flex box-center">
+				<span>发布</span>
+			</div>
+		</section>
+		<!--<div class="mui-switch mui-switch-mini mui-active ">
+			<div class="mui-switch-handle"></div>
+		</div>-->
+		<script type="text/javascript" src="js/view.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/zepto.min.js" ></script>
+		<script type="text/javascript" src="js/my.js" ></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<!--<script type="text/javascript" src="js/mui.min.js" ></script>-->
+		<script type="text/javascript">
+			var loginUrl = "http://120.78.158.132:8088/fw/app/common/login";
+			$('.login-submit').on('click',function(){
+				var iphone = document.querySelector('.iphone').value.trim();
+				var ps = document.querySelector('.ps').value;
+				var par = "phone="+iphone+'&'+'password='+ps;
+				$.ajax({
+		            url: 'http://120.78.158.132:8088/fw/app/common/login',
+		            type: 'GET',
+		            data: par,
+		            dataType : 'json',
+		            success:function(res){
+		            	console.log(res);
+		            	if(res.message==1){
+		            		alert('登录成功！')
+		                    document.cookie="tokenContent="+res.tokenContent;
+		                    // console.log("登陆成功,tokenContent已存入cookie中");
+		                }else if(res.message==2){
+		                    alert("密码错误");
+		                }else if(res.message==3){
+		                    alert("该手机未注册");
+		                }else if(res.message==4){
+		                    alert("该手机已被冻结");
+		                }
+		            }
+		        });
+				// $$.jsonpAjax(loginUrl,par);
+			})
+		</script>
+	</body>
+</html>

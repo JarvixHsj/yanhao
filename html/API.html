@@ -1,0 +1,2256 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+<script type="text/javascript" src="hibot.js"></script><style id="system" type="text/css">h1,h2,h3,h4,h5,h6,p,blockquote {    margin: 0;    padding: 0;}body {    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;    font-size: 13px;    line-height: 18px;    color: #737373;    margin: 10px 13px 10px 13px;}a {    color: #0069d6;}a:hover {    color: #0050a3;    text-decoration: none;}a img {    border: none;}p {    margin-bottom: 9px;}h1,h2,h3,h4,h5,h6 {    color: #404040;    line-height: 36px;}h1 {    margin-bottom: 18px;    font-size: 30px;}h2 {    font-size: 24px;}h3 {    font-size: 18px;}h4 {    font-size: 16px;}h5 {    font-size: 14px;}h6 {    font-size: 13px;}hr {    margin: 0 0 19px;    border: 0;    border-bottom: 1px solid #ccc;}blockquote {    padding: 13px 13px 21px 15px;    margin-bottom: 18px;    font-family:georgia,serif;    font-style: italic;}blockquote:before {    content:"C";    font-size:40px;    margin-left:-10px;    font-family:georgia,serif;    color:#eee;}blockquote p {    font-size: 14px;    font-weight: 300;    line-height: 18px;    margin-bottom: 0;    font-style: italic;}code, pre {    font-family: Monaco, Andale Mono, Courier New, monospace;}code {    background-color: #fee9cc;    color: rgba(0, 0, 0, 0.75);    padding: 1px 3px;    font-size: 12px;    -webkit-border-radius: 3px;    -moz-border-radius: 3px;    border-radius: 3px;}pre {    display: block;    padding: 14px;    margin: 0 0 18px;    line-height: 16px;    font-size: 11px;    border: 1px solid #d9d9d9;    white-space: pre-wrap;    word-wrap: break-word;}pre code {    background-color: #fff;    color:#737373;    font-size: 11px;    padding: 0;}@media screen and (min-width: 768px) {    body {        width: 748px;        margin:10px auto;    }}</style><style id="custom" type="text/css"></style><style id="hibot" type="text/css">.hibot  { padding:0 0 0 38px; margin:auto; font-size:14px;font-family: monospace; background:#111; color: #e6e1dc;  }.hibot li{ margin: 0; padding-left: 10px; border-left: 2px solid #ccc; background:#111; list-style-position: outside; list-style-type: decimal; text-indent: 0; word-wrap: break-word; word-break: break-all; }.hibot .num { color: #a5c261; }.hibot .attr { color : #4093CC} .hibot .comment { color: #bc9458; font-style: italic; }.hibot .special { color: #da4939; }.hibot .statement { color: #cc7833; }.hibot .preProc { color: #e6e1dc; }.hibot .include, .hibot .head { color: #cc7833; }.hibot .string { color: #a5c261; }.hibot .type, .hibot .keyword, .hibot .val { color: #da4939; }</style></head>
+<body marginheight="0"><h1>演号API文档</h1>
+<h4>我的档期</h4>
+<p><a href="#20181201">app/schedule/getScheduleByTokenAndMonth</a>通过月份获取我的档期<br><a href="#2018121304123">app/schedule/getScheduleByTimeAndToken</a>通过时间查询
+</p>
+<h4>登录</h4>
+<p><a href="#201810171704">fw/app/common/login</a>登录    
+</p>
+<h4>商家订单</h4>
+<p><a href="#201801191230">app/business/getReserveOrderByToken</a>商家订单（商家的我的预约） 
+</p>
+<h4>艺人角色</h4>
+<p><a href="#20180220130544">app/artist/getApplyArtistData</a>获取艺人类型角色  
+</p>
+<h4>艺人订单</h4>
+<p><a href="#20180333131234">app/artist/getReserveOrderByToken</a> 艺人订单
+</p>
+<h4>艺人详情</h4>
+<p><a href="#10495839490130354">app/artist/getArtistById</a>艺人详情
+</p>
+<h4>发布商演</h4>
+<p><a href="#899048501038">app/demand/postDemand</a>发布商演<br><a href="#8947785050">app/demand/getDemandServer</a>获取福利  
+</p>
+<h4>商演详情</h4>
+<p><a href="#8947785050546545">app/demand/getDemandByDId</a>商演详情  
+
+
+</p>
+<h2>新增接口</h2>
+<p><a href="#201710171657">app/advertisement/getAppAdvertisement</a>获取启动页广告图<br><a href="#201710171704">fw/app/common/qqLogin</a>QQ登录<br><a href="#201710171705">fw/app/common/wxLogin</a>wx登录<br><a href="#201710171706">fw/app/common/bindQQ</a>绑定QQ<br><a href="#201710171707">fw/app/common/bindWX</a>绑定WX<br><a href="#201710301756">app/artist/getArtistByRecommend</a>推荐艺人<br><a href="#201710301758">app/demand/getRecommendDemand</a>推荐商演<br><a href="#201711021503">app/find/publish</a>发表朋友圈<br><a href="#201711061434">app/find/delete</a>删除朋友圈<br><a href="#201711061435">app/find/praise</a>朋友圈点赞与取消点赞<br><a href="#201711061436">app/find/comment</a>朋友圈评论<br><a href="#201711061438">app/find/deleteComment</a>朋友圈删除评论<br><a href="#201711061439">app/find/reply</a>朋友圈回复评论<br><a href="#201711081439">app/find/find</a>朋友圈记录<br><a href="#201711101523">app/perform/recentActivity</a>档期里面的最近活动<br><a href="#201711122856">app/common/getBusinessesMyLower</a>我的会员（商家）<br><a href="#201711122856">app/common/getArtistMyLower</a>我的会员（游客）<br><a href="#201711122856">app/common/getVisitorMyLower</a>我的会员（艺人）<br><a href="#201711202856">app/common/getMyArtistByAgent</a>经纪人管理-艺人列表<br><a href="#201711202866">app/common/saveMyArtistByAgent</a>经纪人管理-保存我的艺人<br><a href="#201711222866">app/common/deleteMyArtistByAgent</a>经纪人管理-删除我的艺人
+
+
+</p>
+<h2>修改接口</h2>
+<p><a href="#201710201018">fw/app/common/login</a>登录<br><a href="#201712151355">app/artist/getArtistByType</a>根据类型查找艺人<br><a href="#2018020234154">app/artist/registArtist</a>申请成为艺人  
+
+
+
+
+</p>
+<h2>新增推送</h2>
+<p>function_code：send_message（表示后台推送消息，url：跳转地址）
+function_code：freeze_user（表示冻结用户，移动端将账户强制退出登录）
+
+
+</p>
+<h2>艺人</h2>
+<p><a href="#201710301756">app/artist/getArtistByRecommend</a>推荐艺人<br><a href="#201711101523">app/perform/recentActivity</a>档期里面的最近活动   
+
+</p>
+<h2>商演</h2>
+<p><a href="#201710301758">app/demand/getRecommendDemand</a>推荐商演 
+
+
+</p>
+<h2>登录模块</h2>
+<p><a href="#201710201018">fw/app/common/login</a>登录
+<a href="#201710171704">fw/app/common/qqLogin</a>QQ登录<br><a href="#201710171705">fw/app/common/wxLogin</a>wx登录<br><a href="#201710171706">fw/app/common/bindQQ</a>绑定QQ<br><a href="#201710171707">fw/app/common/bindWX</a>绑定WX  
+
+</p>
+<h2>发现（类似朋友圈的那个功能）</h2>
+<p><a href="#201711021503">app/find/publish</a>发表朋友圈<br><a href="#201711061434">app/find/delete</a>删除朋友圈<br><a href="#201711061435">app/find/praise</a>朋友圈点赞与取消点赞<br><a href="#201711061436">app/find/comment</a>朋友圈评论<br><a href="#201711061438">app/find/deleteComment</a>朋友圈删除评论<br><a href="#201711061439">app/find/reply</a>朋友圈回复评论<br><a href="#201711081439">app/find/find</a>朋友圈记录          
+
+</p>
+<h2>我的</h2>
+<p><a href="#201711122856">app/common/getBusinessesMyLower</a>我的会员（商家）<br><a href="#201711122856">app/common/getArtistMyLower</a>我的会员（游客）<br><a href="#201711122856">app/common/getVisitorMyLower</a>我的会员（艺人） 
+<a href="#201711202856">app/common/getMyArtistByMiddleman</a>经纪人管理-艺人列表<br><a href="#201711202866">app/common/saveMyArtistByAgent</a>经纪人管理-保存我的艺人<br><a href="#201711222866">app/common/deleteMyArtistByAgent</a>经纪人管理-删除我的艺人                   
+
+</p>
+<h2>其它</h2>
+<p><a href="#201710171657">app/advertisement/getAppAdvertisement</a>获取启动页广告图  
+
+
+
+</p>
+<h2 id="2018020234154">申请成为艺人   </h2>
+
+<blockquote>
+<p>app/artist/registArtist  
+
+</p>
+</blockquote>
+<p>参数说明：新增参数 aProgrammeFlow（节目流程）  
+
+
+</p>
+<h2 id="8947785050546545">商演详情  </h2>
+
+<blockquote>
+<p>app/demand/getDemandByDId
+
+</p>
+</blockquote>
+<p>参数：<br>    dId：商演id<br>    tokenContent:<br>    lat:<br>    lng:  
+
+</p>
+<p>返回值： 
+</p>
+<pre><code class="lang-json">{
+    "usable": 1,
+    "dec": "get success",
+    "message": 1,
+    "demand": {
+        "dId": "53208a51da25432d81ecfd86c1340494",
+        "dName": "威力演艺的演出",
+        "dStatus": 1,
+        "dPersonType": "b04b9a7ec8984b59bac8038a50784789",
+        "dPersonTypeName": "其他",
+        "dPersonRole": "中性",
+        "dPersonHeight": 155.0,
+        "dPersonWeight": 55.0,
+        "dPersonBust": "无",
+        "dServerAddress": "广东省广州市海珠区广州大道南999号",
+        "dPersonNum": 6,
+        "dAcceptedNum": 0,
+        "dApplyNum": 9,
+        "dMoney": 800.00,
+        "dServer": "免费WIFI",
+        "dRequire": "儿童节目6-8人\n",
+        "dPic": "upload//images//business//pic//107ef4b5cbc44f03ba800f112cb64a16.png",
+        "dBId": "462b26fac00e4751aae7986bbc38c2fa",
+        "dLId": "13e0e040128a4b83ba50de2f5783b252",
+        "dBType": "1",
+        "dCityName": "广州市",
+        "dScopeMoneyLower": null,
+        "dScopeMoneyHight": null,
+        "dStartTime": 1486483200000,
+        "dEndTime": 1486483200000,
+        "dTimeBucket": null,
+        "dRefalshTime": 1484144944000,
+        "dCreatTime": 1484144944000,
+        "dModifyTime": 1484144944000,
+        "distance": 14059.0,
+        "location": {
+            "lId": "13e0e040128a4b83ba50de2f5783b252",
+            "lDetailAddress": "广东省广州市海珠区广州大道南999号",
+            "lProvince": "19",
+            "lCity": "198",
+            "lDistrict": "1814",
+            "lLat": "23.08921",
+            "lLng": "113.3237",
+            "pName": "广东省",
+            "cName": "广州市",
+            "dName": "海珠区",
+            "lCreateTime": 1484144944000,
+            "lModifyTime": 1484144944000
+        },
+        "recommend": false,
+        "isApply": false,
+        "dPicPath": "http://120.78.158.132:8088/artists/upload//images//business//pic//107ef4b5cbc44f03ba800f112cb64a16.png",
+        "businesses": {
+            "bId": "462b26fac00e4751aae7986bbc38c2fa",
+            "bName": "威力演艺",
+            "bUserName": "力总",
+            "bPic": null,
+            "bType": "1",
+            "bPhone": "15815675152",
+            "bAddress": "佛山市南海区",
+            "bLicense": null,
+            "bIdCard": null,
+            "bStatus": 1,
+            "bUId": "fc9ef7682cea430ca3cdc07f8b0fdd89",
+            "bRate": 0.00,
+            "bCollectNum": 0,
+            "bLId": "ac4e2a752b054c77acc85d32d33ace4b",
+            "bConsumption": 0.00,
+            "bCreateTime": 1481463357000,
+            "bModifyTime": 1481614986000,
+            "bTypeName": "酒吧",
+            "location": null,
+            "bpicUrl": null,
+            "bLPicPath": null,
+            "bIdPicPath": null,
+            "bIdBlowPicPath": null
+        },
+        "dpicPath": "http://120.78.158.132:8088/artists/upload//images//business//pic//107ef4b5cbc44f03ba800f112cb64a16.png"
+    }
+}</code></pre>
+<h2 id="8947785050">获取福利</h2>
+
+<blockquote>
+<p>app/demand/getDemandServer
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent：
+
+</p>
+<p>返回值：  
+
+
+</p>
+<pre><code class="lang-json">{
+    "showServerList": [{
+        "ssId": "1",
+        "ssCode": "wifi",
+        "ssValue": "住宿单程路费",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900129000,
+        "ssModifyTime": 1499162166000
+    }, {
+        "ssId": "10",
+        "ssCode": "sclf",
+        "ssValue": "双程路费",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900213000,
+        "ssModifyTime": 1484275771000
+    }, {
+        "ssId": "2",
+        "ssCode": "rzjd",
+        "ssValue": "酒店入住",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900129000,
+        "ssModifyTime": 1496666536000
+    }, {
+        "ssId": "3",
+        "ssCode": "tsyb",
+        "ssValue": "天上一半",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900129000,
+        "ssModifyTime": 1465900129000
+    }, {
+        "ssId": "4",
+        "ssCode": "tsqb",
+        "ssValue": "天上全包",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900129000,
+        "ssModifyTime": 1465900129000
+    }, {
+        "ssId": "5",
+        "ssCode": "dsyb",
+        "ssValue": "地上一半",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900129000,
+        "ssModifyTime": 1465900129000
+    }, {
+        "ssId": "6",
+        "ssCode": "dsqb",
+        "ssValue": "地上全包",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900213000,
+        "ssModifyTime": 1465900213000
+    }, {
+        "ssId": "7",
+        "ssCode": "sjjd",
+        "ssValue": "食宿全包",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900213000,
+        "ssModifyTime": 1498443313000
+    }, {
+        "ssId": "8",
+        "ssCode": "kt",
+        "ssValue": "艺人打包",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900213000,
+        "ssModifyTime": 1496666610000
+    }, {
+        "ssId": "9",
+        "ssCode": "dclf",
+        "ssValue": "单程路费",
+        "ssDeleted": 0,
+        "ssCreateTime": 1465900213000,
+        "ssModifyTime": 1465900213000
+    }],
+    "message": 1
+}</code></pre>
+<h2 id="899048501038">发布商演</h2>
+
+<blockquote>
+<p>app/demand/postDemand
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent：
+    lat：
+    lng:
+    isPush： 1：推送给附近的人<br>    file：图片<br>    dName：名称<br>    dServerAddress:地址<br>    dPersonType：角色id（多个以逗号隔开）<br>    dPersonRole: 类型（性别）
+    dPersonHeight:身高
+    dPersonWeight:体重
+    dPersonBust:胸围
+    dPersonNum：人数
+    dMoney：价格 
+    dServer：福利<br>    dRequire：演出要求<br>    dStartTime：开始时间（yyyy-MM-dd）<br>    dEndTime：结束时间（yyyy-MM-dd）   
+
+
+</p>
+<p>返回值：<br>    {message:  ,dec :""}
+
+</p>
+<h2 id="10495839490130354">艺人详情</h2>
+
+<blockquote>
+<p>app/artist/getArtistById
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent：<br>    artistId： 艺人id  
+
+</p>
+<p>返回值：  
+
+</p>
+<pre><code class="lang-json">{
+    "isAttention": 0,
+    "usable": 0,
+    "isStoreUp": 0,
+    "dec": "isAttention = 1  is attention 0 is no , storeUp No different ",
+    "artist": {
+        "aId": "fd74c385b1544492995acc62752a42ce",
+        "aName": "test",
+        "aPic": "upload//images////headPortrait////653aad953f3f46c1be2d4d181a701e1f.jpg",
+        "aJob": "test",
+        "aCash": 0.00,
+        "aAdept": "66666长长啊",
+        "aHeight": 160.0,
+        "aWeight": 50.0,
+        "aBust": null,
+        "aPicture": null,
+        "aVideoId": null,
+        "aServiceCity": "广州",
+        "aSex": null,
+        "aPhone": "13045899405",
+        "aAddress": null,
+        "aIdCard": null,
+        "aIdCardPic": null,
+        "aRole": 4,
+        "aLId": "5a5f9f21592845c9838be0ddf75d9e3f",
+        "aOrderNum": 0,
+        "aMoney": 1000.00,
+        "aRate": 50,
+        "aGoodNum": 0,
+        "aFansNum": 0,
+        "aUId": "6548fd54b3e1474d89863382b8b9b48a",
+        "aInfo": "打屎你",
+        "aStatus": 1,
+        "aCreateTime": 1508125415000,
+        "aModifyTime": 1510726908000,
+        "aAge": "0",
+        "aType": "5f223d7bfa07489b88ee40ad82147b56",
+        "aTypeName": "test",
+        "aExperience": "经验",
+        "aRefalshTime": 1516160170000,
+        "location": null,
+        "artistTypeLists": null,
+        "aPerformStatus": 1,
+        "whetherRecommend": false,
+        "roleName": "男性",
+        "distance": null,
+        "uFreezeTime": null,
+        "isAgent": 1,
+        "channelId": null,
+        "artistPicPath": "http://120.78.158.132:8088/artists/upload//images////headPortrait////653aad953f3f46c1be2d4d181a701e1f.jpg",
+        "apicturePath": null,
+        "artistIdPicPath": null,
+        "artistIdBlowPicPath": null,
+        "goos": 5
+    },
+    "message": 1
+}</code></pre>
+<h2 id="20180333131234">艺人订单</h2>
+
+<blockquote>
+<p>app/artist/getReserveOrderByToken
+
+</p>
+</blockquote>
+<p>参数及返回值 同 <a href="#201801191230">app/business/getReserveOrderByToken</a>商家订单（商家的我的预约）
+
+
+</p>
+<h2 id="20180220130544">获取艺人类型角色</h2>
+
+<blockquote>
+<p>app/artist/getApplyArtistData
+
+</p>
+</blockquote>
+<p>参数：无<br>返回值：<br>    角色:artistTypeList<br>    类型：artistRoleList
+
+</p>
+<pre><code class="lang-json">{
+    "artistTypeList": [{
+        "aTId": "5f223d7bfa07489b88ee40ad82147b56",
+        "aTName": "test",
+        "aTCode": "test",
+        "aTOrderBy": 66,
+        "aTCreateTime": 1508125208000,
+        "aTModifyTime": 1508125208000
+    }, {
+        "aTId": "4",
+        "aTName": "模仿秀",
+        "aTCode": "mfx",
+        "aTOrderBy": 35,
+        "aTCreateTime": 1463974541000,
+        "aTModifyTime": 1484012131000
+    }, {
+        "aTId": "64ddfeae07af4c17bd2daad900854011",
+        "aTName": "派对组合",
+        "aTCode": "pdzh",
+        "aTOrderBy": 34,
+        "aTCreateTime": 1483064510000,
+        "aTModifyTime": 1484014670000
+    }, {
+        "aTId": "5",
+        "aTName": "港台明星",
+        "aTCode": "gtmx",
+        "aTOrderBy": 32,
+        "aTCreateTime": 1463974541000,
+        "aTModifyTime": 1484014733000
+    }, {
+        "aTId": "2",
+        "aTName": "大陆明星",
+        "aTCode": "dlmx",
+        "aTOrderBy": 31,
+        "aTCreateTime": 1463974502000,
+        "aTModifyTime": 1484014754000
+    }, {
+        "aTId": "6",
+        "aTName": "外籍嘉宾",
+        "aTCode": "wjjb",
+        "aTOrderBy": 30,
+        "aTCreateTime": 1475052662000,
+        "aTModifyTime": 1484014770000
+    }, {
+        "aTId": "522dc80f308b4902af3b241838f158f1",
+        "aTName": "普艳",
+        "aTCode": "py",
+        "aTOrderBy": 29,
+        "aTCreateTime": 1483064462000,
+        "aTModifyTime": 1484014788000
+    }, {
+        "aTId": "5c70a9cd6fcd4f95b8c698a7411f180c",
+        "aTName": "大尺",
+        "aTCode": "dachi",
+        "aTOrderBy": 28,
+        "aTCreateTime": 1483064475000,
+        "aTModifyTime": 1484014799000
+    }, {
+        "aTId": "509a7e9fd4274f4089912154bc3b0fe0",
+        "aTName": "啤酒秀",
+        "aTCode": "pjx",
+        "aTOrderBy": 27,
+        "aTCreateTime": 1483064493000,
+        "aTModifyTime": 1484014824000
+    }, {
+        "aTId": "310c450eace2475cba3400502adcbafe",
+        "aTName": "彩绘",
+        "aTCode": "ch",
+        "aTOrderBy": 26,
+        "aTCreateTime": 1483064519000,
+        "aTModifyTime": 1484014853000
+    }, {
+        "aTId": "de98daffbb114b8697575c6b9d8695c7",
+        "aTName": "高空绸吊",
+        "aTCode": "gkcd",
+        "aTOrderBy": 25,
+        "aTCreateTime": 1501836311000,
+        "aTModifyTime": 1501836311000
+    }, {
+        "aTId": "46987064044341d7912a563d31b246fc",
+        "aTName": "民族歌手",
+        "aTCode": "mzgs",
+        "aTOrderBy": 25,
+        "aTCreateTime": 1501836426000,
+        "aTModifyTime": 1501836426000
+    }, {
+        "aTId": "10",
+        "aTName": "网红",
+        "aTCode": "wh",
+        "aTOrderBy": 25,
+        "aTCreateTime": 1463974618000,
+        "aTModifyTime": 1484014865000
+    }, {
+        "aTId": "9",
+        "aTName": "主持人",
+        "aTCode": "zcr",
+        "aTOrderBy": 24,
+        "aTCreateTime": 1463974618000,
+        "aTModifyTime": 1484014881000
+    }, {
+        "aTId": "5eea769efde34999b59c486a004ca719",
+        "aTName": "模特",
+        "aTCode": "mt",
+        "aTOrderBy": 23,
+        "aTCreateTime": 1482914488000,
+        "aTModifyTime": 1484014976000
+    }, {
+        "aTId": "9911c20a117e4aacabe9aa43443c171e",
+        "aTName": "礼仪",
+        "aTCode": "ly",
+        "aTOrderBy": 22,
+        "aTCreateTime": 1482890200000,
+        "aTModifyTime": 1484014923000
+    }, {
+        "aTId": "6f8a8d038cff4be798e613b3e2accb1e",
+        "aTName": "主题派对",
+        "aTCode": "ztpd",
+        "aTOrderBy": 21,
+        "aTCreateTime": 1482896421000,
+        "aTModifyTime": 1484015018000
+    }, {
+        "aTId": "d807dfb062de46ab9ceb188553ab7f6f",
+        "aTName": "反串",
+        "aTCode": "fc",
+        "aTOrderBy": 20,
+        "aTCreateTime": 1483064244000,
+        "aTModifyTime": 1484015050000
+    }, {
+        "aTId": "a654cb436ba848d697ee8a9f48d2b345",
+        "aTName": "彩绘师",
+        "aTCode": "chs",
+        "aTOrderBy": 20,
+        "aTCreateTime": 1501836409000,
+        "aTModifyTime": 1501836409000
+    }, {
+        "aTId": "11d24b6a8b9d4a0ba7d50473aaaaad1d",
+        "aTName": "人妖",
+        "aTCode": "ry",
+        "aTOrderBy": 19,
+        "aTCreateTime": 1483064695000,
+        "aTModifyTime": 1484015085000
+    }, {
+        "aTId": "54e34fd0e198485b8686c0baee98524d",
+        "aTName": "群众演员",
+        "aTCode": "qzyy",
+        "aTOrderBy": 18,
+        "aTCreateTime": 1501836480000,
+        "aTModifyTime": 1501836480000
+    }, {
+        "aTId": "634f30cf3c114045bb7d329100971dfc",
+        "aTName": "导演",
+        "aTCode": "dy",
+        "aTOrderBy": 18,
+        "aTCreateTime": 1483064430000,
+        "aTModifyTime": 1484015173000
+    }, {
+        "aTId": "60913410ba1d482dad2f30992a35043d",
+        "aTName": "电影演员",
+        "aTCode": "dyzj",
+        "aTOrderBy": 18,
+        "aTCreateTime": 1501836442000,
+        "aTModifyTime": 1501836491000
+    }, {
+        "aTId": "652019eca60c4b648c71705f8fe420a0",
+        "aTName": "魔术",
+        "aTCode": "ms",
+        "aTOrderBy": 17,
+        "aTCreateTime": 1483064660000,
+        "aTModifyTime": 1484015240000
+    }, {
+        "aTId": "8b2ce89b64ab4144a4e034366578cd63",
+        "aTName": "互动小丑",
+        "aTCode": "hdxc",
+        "aTOrderBy": 16,
+        "aTCreateTime": 1483064043000,
+        "aTModifyTime": 1484015257000
+    }, {
+        "aTId": "b65949410b834eddab32f585bf5d5a80",
+        "aTName": "水鼓舞",
+        "aTCode": "sgw",
+        "aTOrderBy": 15,
+        "aTCreateTime": 1501836366000,
+        "aTModifyTime": 1501836366000
+    }, {
+        "aTId": "b4807693c26349b5b3c6cedf3a1ce7e2",
+        "aTName": "特技",
+        "aTCode": "tj",
+        "aTOrderBy": 15,
+        "aTCreateTime": 1482890190000,
+        "aTModifyTime": 1484015298000
+    }, {
+        "aTId": "0f4e827b1acc4d3480029f6899bc7773",
+        "aTName": "特色嘉宾",
+        "aTCode": "tsjb",
+        "aTOrderBy": 15,
+        "aTCreateTime": 1501836330000,
+        "aTModifyTime": 1501836330000
+    }, {
+        "aTId": "c4dffdfdd5f145ab8c74fb9b878e5392",
+        "aTName": "摇滚",
+        "aTCode": "yg",
+        "aTOrderBy": 14,
+        "aTCreateTime": 1482890215000,
+        "aTModifyTime": 1484015326000
+    }, {
+        "aTId": "58a75c9bf045458eb3fcf22a5f91b0e8",
+        "aTName": "乐手",
+        "aTCode": "ys",
+        "aTOrderBy": 13,
+        "aTCreateTime": 1483064256000,
+        "aTModifyTime": 1484015344000
+    }, {
+        "aTId": "8",
+        "aTName": "乐队",
+        "aTCode": "yd",
+        "aTOrderBy": 12,
+        "aTCreateTime": 1463974596000,
+        "aTModifyTime": 1484015386000
+    }, {
+        "aTId": "1",
+        "aTName": "歌手",
+        "aTCode": "gs",
+        "aTOrderBy": 11,
+        "aTCreateTime": 1474711321000,
+        "aTModifyTime": 1484015398000
+    }, {
+        "aTId": "68929230bc1a47c5bade87a0e272f110",
+        "aTName": "气氛宝贝",
+        "aTCode": "qfbb",
+        "aTOrderBy": 10,
+        "aTCreateTime": 1483064399000,
+        "aTModifyTime": 1484015411000
+    }, {
+        "aTId": "a00c1d94edcd4e8a91c9777a0488633a",
+        "aTName": "B组领舞",
+        "aTCode": "bzlw",
+        "aTOrderBy": 9,
+        "aTCreateTime": 1483064545000,
+        "aTModifyTime": 1484015420000
+    }, {
+        "aTId": "708380b11dbc47b39c09a467c824af93",
+        "aTName": "舞团",
+        "aTCode": "wt",
+        "aTOrderBy": 8,
+        "aTCreateTime": 1483064412000,
+        "aTModifyTime": 1484015430000
+    }, {
+        "aTId": "cca71fde78394621a68641431403db2a",
+        "aTName": "男DMC",
+        "aTCode": "dmc",
+        "aTOrderBy": 7,
+        "aTCreateTime": 1483064704000,
+        "aTModifyTime": 1484015469000
+    }, {
+        "aTId": "3",
+        "aTName": "女DMC",
+        "aTCode": "nvdmc",
+        "aTOrderBy": 6,
+        "aTCreateTime": 1463974518000,
+        "aTModifyTime": 1484015494000
+    }, {
+        "aTId": "a0047bbcc4764452848190acfae2ffac",
+        "aTName": "男DJ",
+        "aTCode": "mandj",
+        "aTOrderBy": 5,
+        "aTCreateTime": 1483064628000,
+        "aTModifyTime": 1484015541000
+    }, {
+        "aTId": "a739e51796344bceb42c5c294ef9b955",
+        "aTName": "女DJ",
+        "aTCode": "nvdj",
+        "aTOrderBy": 4,
+        "aTCreateTime": 1483064645000,
+        "aTModifyTime": 1484015550000
+    }, {
+        "aTId": "baf5c2a58f904655a579fb0ebdbd0337",
+        "aTName": "VJ",
+        "aTCode": "vj",
+        "aTOrderBy": 3,
+        "aTCreateTime": 1484015567000,
+        "aTModifyTime": 1484015567000
+    }, {
+        "aTId": "4e2fb0c910e74392b2f3d3a30307b03f",
+        "aTName": "灯光师",
+        "aTCode": "dgs",
+        "aTOrderBy": 2,
+        "aTCreateTime": 1484015580000,
+        "aTModifyTime": 1484015580000
+    }, {
+        "aTId": "ad2e3870db67464199c46f0570a640f0",
+        "aTName": "摄像摄影",
+        "aTCode": "sxsy",
+        "aTOrderBy": 1,
+        "aTCreateTime": 1483064676000,
+        "aTModifyTime": 1484015599000
+    }, {
+        "aTId": "5e21f6dfb28b475b8c895d045ad7a3d8",
+        "aTName": "沙画",
+        "aTCode": "sh",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1501836389000,
+        "aTModifyTime": 1501836389000
+    }, {
+        "aTId": "287c5572eab74d259740df3a9c1046dd",
+        "aTName": "二人转",
+        "aTCode": "erz",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1501836263000,
+        "aTModifyTime": 1501836263000
+    }, {
+        "aTId": "6ce4d9fb104d4eda80c31ec11636fbb6",
+        "aTName": "小矮人",
+        "aTCode": "xar",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1501836346000,
+        "aTModifyTime": 1501836346000
+    }, {
+        "aTId": "2896974fb2f447d39b8d3c82e5d00570",
+        "aTName": "化妆师",
+        "aTCode": "hzs",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1484015609000,
+        "aTModifyTime": 1484015609000
+    }, {
+        "aTId": "0adf11e3462341da96a2ecaaa9a8e0dd",
+        "aTName": "相声",
+        "aTCode": "xs",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1501836249000,
+        "aTModifyTime": 1501836249000
+    }, {
+        "aTId": "b04b9a7ec8984b59bac8038a50784789",
+        "aTName": "其他",
+        "aTCode": "qt",
+        "aTOrderBy": 0,
+        "aTCreateTime": 1484015714000,
+        "aTModifyTime": 1484015714000
+    }],
+    "artistRoleList": [{
+        "aRId": "2",
+        "aRValue": "中性",
+        "aRCode": "zx",
+        "aRCreateTime": 1465891176000,
+        "aRModifyTime": 1465891176000
+    }, {
+        "aRId": "3",
+        "aRValue": "人妖反串",
+        "aRCode": "fc",
+        "aRCreateTime": 1465891193000,
+        "aRModifyTime": 1483666264000
+    }, {
+        "aRId": "4",
+        "aRValue": "男性",
+        "aRCode": "boy",
+        "aRCreateTime": 1472181855000,
+        "aRModifyTime": 1472181855000
+    }, {
+        "aRId": "5",
+        "aRValue": "女性",
+        "aRCode": "girl",
+        "aRCreateTime": 1472181866000,
+        "aRModifyTime": 1472181866000
+    }, {
+        "aRId": "6",
+        "aRValue": "人妖",
+        "aRCode": "bxr",
+        "aRCreateTime": 1474711417000,
+        "aRModifyTime": 1476757485000
+    }],
+    "message": 1
+}</code></pre>
+<h2 id="201801191230">商家订单（商家的我的预约）</h2>
+
+<blockquote>
+<p>app/business/getReserveOrderByToken
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent<br>    pageNum<br>    pageSize<br>    status: 0:全部 1；待处理 2:已接受 3已付定金 4已完成  5 已拒绝
+
+</p>
+<p>返回值：
+
+</p>
+<pre><code>pageInfo.list 为订单列表
+列表中artist：为每个订单的艺人信息</code></pre>
+<pre><code class="lang-json">{
+    "pageInfo": {
+        "pageNum": 1,
+        "pageSize": 5,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 1,
+        "total": 1,
+        "pages": 1,
+        "list": [{
+            "oId": "6dd936619d5e472782dbd63eb62b1232",
+            "oNumber": "20171108879357",
+            "oAType": null,
+            "oAId": "7c9b494250764c158c223d8bbdbdece0",
+            "oBId": "c9d34fbec5bc41009265c7e5b477eb52",
+            "oDId": null,
+            "oPfId": "693099cff0f1453cb9ff7d0a870cff83",
+            "oSubMoney": 1999.80,
+            "welfare": "酒店入住",
+            "explain": null,
+            "oMoney": 6666.00,
+            "oStatus": -1,
+            "oGos": 0,
+            "oQa": 0,
+            "oIsEval": 0,
+            "oComment": null,
+            "oRefuse": null,
+            "oLat": "23.144807523599905",
+            "oLng": "113.33561293753215",
+            "oBName": "我是商家",
+            "oAName": null,
+            "oDType": "test",
+            "oPhone": "13045899405",
+            "oAddress": "体育东路140至148号",
+            "oLinkName": "我是商家",
+            "oStartTime": 1510675200000,
+            "oEndTime": 1510675200000,
+            "oPvId": "19",
+            "oCtId": "198",
+            "oDtId": "1815",
+            "oPvName": "广东省",
+            "oCtName": "广州市",
+            "oDtName": "天河区",
+            "oLvJyzcc": 8.00,
+            "oLvZjfy": 0.00,
+            "oLvSjsjtc": 37.50,
+            "oLvSjyrtc": 37.50,
+            "oLvSdlcc": 0.00,
+            "oLvQdlcc": 0.00,
+            "oLvPttc": 0,
+            "oLvJsdl": null,
+            "oCreateTime": 1510124404000,
+            "oModifyTime": 1510124404000,
+            "artist": {
+                "aId": "7c9b494250764c158c223d8bbdbdece0",
+                "aName": null,
+                "aPic": null,
+                "aJob": "test",
+                "aCash": 0.00,
+                "aAdept": null,
+                "aHeight": 160.0,
+                "aWeight": 50.0,
+                "aBust": null,
+                "aPicture": null,
+                "aVideoId": null,
+                "aServiceCity": "广州",
+                "aSex": null,
+                "aPhone": "17098905192",
+                "aAddress": null,
+                "aIdCard": null,
+                "aIdCardPic": null,
+                "aRole": 2,
+                "aLId": "91cf5c4475914e7bb4a0af7ea182267c",
+                "aOrderNum": 0,
+                "aMoney": 99.00,
+                "aRate": null,
+                "aGoodNum": 0,
+                "aFansNum": 0,
+                "aUId": "79a6cb21ae8841199465e9e5f762de2a",
+                "aInfo": "TA有点害羞，没有介绍自己",
+                "aStatus": 1,
+                "aCreateTime": 1508830582000,
+                "aModifyTime": 1508830582000,
+                "aAge": null,
+                "aType": null,
+                "aTypeName": null,
+                "aExperience": null,
+                "aRefalshTime": null,
+                "location": null,
+                "artistTypeLists": null,
+                "aPerformStatus": null,
+                "whetherRecommend": false,
+                "roleName": null,
+                "distance": null,
+                "uFreezeTime": null,
+                "isAgent": null,
+                "channelId": null,
+                "artistPicPath": null,
+                "apicturePath": null,
+                "artistIdPicPath": null,
+                "artistIdBlowPicPath": null,
+                "goos": 5
+            },
+            "businesses": null,
+            "oPic": null,
+            "perform": {
+                "pfId": "693099cff0f1453cb9ff7d0a870cff83",
+                "pfTime": null,
+                "pfBucket": null,
+                "pfCity": "广州",
+                "pfPersonRole": null,
+                "pfPersonRoleName": null,
+                "pfPersonType": "5f223d7bfa07489b88ee40ad82147b56",
+                "pfPersonTypeName": "test",
+                "pfPersonHeight": 160.0,
+                "pfPersonWeight": null,
+                "pfPersonBust": null,
+                "pfMoney": 99,
+                "pfPaymentRate": 30,
+                "pfInfo": null,
+                "pfDemand": null,
+                "pfPic": null,
+                "pfIsFree": 1,
+                "pfStartTime": 1510675200000,
+                "pfEndTime": 1510675200000,
+                "pfAId": "7c9b494250764c158c223d8bbdbdece0",
+                "pfScId": null,
+                "pfDeleted": null,
+                "pfCreateTime": 1508830582000,
+                "pfModifyTime": 1510124405000,
+                "pfType": 0,
+                "isApply": 0,
+                "applyNum": 0,
+                "usable": 1,
+                "artist": null,
+                "order": null,
+                "orderList": null,
+                "pfPicPath": null
+            },
+            "demand": null,
+            "agencyFee": null
+        }],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [1]
+    },
+    "message": 1
+}</code></pre>
+<h2 id="201810171704">登录 </h2>
+
+<blockquote>
+<p>fw/app/common/login
+
+</p>
+</blockquote>
+<p>参数：<br>    phone ：手机号<br>    password：密码
+    lat：
+    lng：
+
+</p>
+<p>返回值：
+    message:  3:该手机未注册   4:该手机已被冻结  2:密码错误
+
+</p>
+<pre><code class="lang-json">{"tokenContent":"c06d3d39064948cea9d5721d2cf63e5c","message":1}</code></pre>
+<h2 id="2018121304123">通过时间查询</h2>
+
+<blockquote>
+<p>app/schedule/getScheduleByTimeAndToken
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent:token值<br>    pageNum：页数<br>    pageSize:每页记录数<br>    startTime：开始时间（格式：'yyyy-MM-dd'）<br>    endTime：结束时间（格式：'yyyy-MM-dd'）  
+
+</p>
+<p>返回值：
+    performList:单场记录列表
+    pageInfo：个性档期分页对象
+
+</p>
+<pre><code class="lang-json">{
+    "performList": [{
+        "pfId": "2603acf1efb34447a0e445feab62ea24",
+        "pfTime": null,
+        "pfBucket": null,
+        "pfCity": "广州",
+        "pfPersonRole": null,
+        "pfPersonRoleName": null,
+        "pfPersonType": "5f223d7bfa07489b88ee40ad82147b56",
+        "pfPersonTypeName": "test",
+        "pfPersonHeight": 160.0,
+        "pfPersonWeight": null,
+        "pfPersonBust": null,
+        "pfMoney": 1000,
+        "pfPaymentRate": 30,
+        "pfInfo": null,
+        "pfDemand": null,
+        "pfPic": null,
+        "pfIsFree": 2,
+        "pfStartTime": 1510156800000,
+        "pfEndTime": 1510156800000,
+        "pfAId": "fd74c385b1544492995acc62752a42ce",
+        "pfScId": null,
+        "pfDeleted": 0,
+        "pfCreateTime": 1508125415000,
+        "pfModifyTime": 1510130502000,
+        "pfType": 1,
+        "isApply": 0,
+        "applyNum": 0,
+        "usable": 1,
+        "artist": null,
+        "order": null,
+        "orderList": null,
+        "pfPicPath": null
+    }, {
+        "pfId": "69270bd635bc46db9a9b5e5017311f73",
+        "pfTime": null,
+        "pfBucket": null,
+        "pfCity": "广州",
+        "pfPersonRole": null,
+        "pfPersonRoleName": null,
+        "pfPersonType": "5f223d7bfa07489b88ee40ad82147b56",
+        "pfPersonTypeName": "test",
+        "pfPersonHeight": 160.0,
+        "pfPersonWeight": null,
+        "pfPersonBust": null,
+        "pfMoney": 1000,
+        "pfPaymentRate": 30,
+        "pfInfo": null,
+        "pfDemand": null,
+        "pfPic": null,
+        "pfIsFree": 1,
+        "pfStartTime": 1508125416000,
+        "pfEndTime": null,
+        "pfAId": "fd74c385b1544492995acc62752a42ce",
+        "pfScId": null,
+        "pfDeleted": 0,
+        "pfCreateTime": 1508125415000,
+        "pfModifyTime": 1508125415000,
+        "pfType": 0,
+        "isApply": 0,
+        "applyNum": 0,
+        "usable": 1,
+        "artist": null,
+        "order": null,
+        "orderList": null,
+        "pfPicPath": null
+    }],
+    "pageInfo": {
+        "pageNum": 1,
+        "pageSize": 5,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 1,
+        "total": 1,
+        "pages": 1,
+        "list": [{
+            "sId": "ed1f11a637e441fea2828dd033e01e6e",
+            "sAId": "fd74c385b1544492995acc62752a42ce",
+            "sTime": 1516291200000,
+            "sEndTime": 1516291200000,
+            "sInfo": "备注",
+            "sRecord": null,
+            "sStatus": 0,
+            "sBucket": 3,
+            "sType": 2
+        }],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [1]
+    },
+    "message": 1
+}</code></pre>
+<h2 id="20181201">通过月份获取档期</h2>
+
+<blockquote>
+<p>app/schedule/getScheduleByTokenAndMonth
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent:token值<br>    year： 年份（int类型）<br>    month：月份（int类型）  
+
+</p>
+<p>返回值： 
+
+</p>
+<pre><code>说明：
+money:单场价格
+aPerformStatus:是否为统一价 （0：统一价 1：不为统一价）
+performList：单场演出列表  
+scheduleDtoList：档期日期列表
+scheduleList：个性档期列表 </code></pre>
+<pre><code class="lang-json">{
+    "dec": "成功",
+    "money": 1000.00,
+    "scheduleList": [{
+        "sId": "fe21e5443cfe4bd49cd9282cf591728e",
+        "sAId": "fd74c385b1544492995acc62752a42ce",
+        "sTime": 1516204800000,
+        "sEndTime": 1516204800000,
+        "sInfo": "123",
+        "sRecord": null,
+        "sStatus": 0,// // 状态 0设置有档期 1 有套餐 2禁用的 （删除）
+        "sBucket": 3,
+        "sType": 2  // 显示的 ： 1 没有套餐 2可预约 3 全被预约了
+    }],
+    "performList": [{
+        "pfId": "69270bd635bc46db9a9b5e5017311f73",
+        "pfTime": null,
+        "pfBucket": null,
+        "pfCity": "广州",
+        "pfPersonRole": null,
+        "pfPersonRoleName": null,
+        "pfPersonType": "5f223d7bfa07489b88ee40ad82147b56",
+        "pfPersonTypeName": "test",  
+        "pfPersonHeight": 160.0,
+        "pfPersonWeight": null,
+        "pfPersonBust": null,
+        "pfMoney": 1000,            //金额
+        "pfPaymentRate": 30,
+        "pfInfo": null,
+        "pfDemand": null,
+        "pfPic": null,
+        "pfIsFree": 1,
+        "pfStartTime": 1508125416000,
+        "pfEndTime": null,
+        "pfAId": "fd74c385b1544492995acc62752a42ce",
+        "pfScId": null,
+        "pfDeleted": 0,
+        "pfCreateTime": 1508125415000,
+        "pfModifyTime": 1508125415000,
+        "pfType": 0,
+        "isApply": 0,
+        "applyNum": 0,
+        "usable": 1,
+        "artist": null,
+        "order": null,
+        "orderList": null,
+        "pfPicPath": null
+    }],
+    "aPerformStatus": 1,
+    "scheduleDtoList": [{
+        "year": 2018,
+        "month": 1,
+        "day": 1,
+        "hasSchedule": 0,//是否有档期 0没有
+        "scheduleNum": 0,//档期的个数
+        "hasPerform": 0,//是否有套餐 0：没有
+        "performNum": 0,//套餐数
+        "aboutPerformNum": 0,//被约数
+        "type": 0  //0 空 1 没套餐(自己 就是没套餐 别人就是空闲) 2 预约了一部分 3全预约了
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 2,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 3,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 4,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 5,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 6,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 7,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 8,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 9,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 10,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 11,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 12,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 13,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 14,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 15,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 16,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 17,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 18,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 1
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 19,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 20,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 21,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 22,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 23,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 24,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 25,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 26,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 27,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 28,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 29,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 30,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }, {
+        "year": 2018,
+        "month": 1,
+        "day": 31,
+        "hasSchedule": 0,
+        "scheduleNum": 0,
+        "hasPerform": 0,
+        "performNum": 0,
+        "aboutPerformNum": 0,
+        "type": 0
+    }],
+    "message": 1
+}</code></pre>
+<h2 id="201712151355">根据类型查找艺人</h2>
+
+<blockquote>
+<p>app/artist/getArtistByType
+
+</p>
+</blockquote>
+<p> 参数：<br>    新增sortType： 1价格最高，2人气最高，3距离最近  
+
+</p>
+<p>返回值：
+   同之前
+
+</p>
+<h2 id="201711222866">经纪人管理-删除我的艺人</h2>
+
+<blockquote>
+<p>app/common/deleteMyArtistByAgent
+
+</p>
+</blockquote>
+<p>参数：
+    tokenContent ：当前用户token<br>    aId：艺人id   
+
+</p>
+<p>返回值：<br>    {"message":0}   未登录
+    {"message":1,"desc":"success"}<br>    {"message":-1,"desc":"您尚未进行经纪人认证，请联系客服"}   
+
+
+</p>
+<h2 id="201711202866">经纪人管理-保存我的艺人</h2>
+
+<blockquote>
+<p>app/common/saveMyArtistByAgent
+
+</p>
+</blockquote>
+<p>传参aId为空，则为新增艺人，反之为修改艺人。
+
+</p>
+<p>参数：
+    tokenContent ：当前用户token<br>    aId：艺人id<br>    pic:头像<br>    aName:艺名<br>    aAge:年龄<br>    aSex:性别<br>    aHeight:身高<br>    aWeight:体重<br>    aPhone:联系电话<br>    aRole:角色<br>    aServiceCity:承演城市<br>    aRate：演出定金<br>    aMoney：单场加格<br>    aInfo：简介<br>    aAdept：节目流程<br>    picture: 个性照<br>    picture1: 个性照<br>    picture2: 个性照<br>    picture3: 个性照<br>    picture4: 个性照 
+
+</p>
+<p>返回值：<br>    {"message":0}   未登录
+    {"message":1,"desc":"success"}<br>    {"message":-1,"desc":"您尚未进行经纪人认证，请联系客服"}<br>    {"message":2,"desc":"当前账号已被冻结，无权添加艺人，如有问题，请联系客服"}
+    {"message":2,"desc":"当前账号已被冻结，无权修改艺人，如有问题，请联系客服"}
+
+</p>
+<h2 id="201711202856">经纪人管理-艺人列表</h2>
+
+<blockquote>
+<p>app/common/getMyArtistByAgent
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent:当前用户token,<br>    pageNum<br>    pageSize  
+
+</p>
+<p>返回值：
+
+</p>
+<pre><code>    同接口  app/common/getMyLowerArtist  
+    aStatus ： 0 审核中，1审核通过，2审核不通过</code></pre>
+<h2 id="201711122856">我的会员</h2>
+
+<blockquote>
+<p>app/common/getBusinessesMyLower
+app/common/getArtistMyLower
+app/common/getVisitorMyLower
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent:当前用户token,<br>    pageNum<br>    pageSize  
+
+</p>
+<p>返回值： 
+        同接口  app/common/getMyLower   
+
+
+
+</p>
+<h2 id="201711101523">档期里面的最近活动</h2>
+
+<blockquote>
+<p>app/perform/recentActivity
+
+</p>
+</blockquote>
+<p>参数：<br>    tokenContent:当前用户token,<br>    artistId:所查看的艺人id  
+
+</p>
+<p>返回值：<br>        返回的对象模型与 接口[app/perform/getPerformByTokenAndStatus] 相同。<br>        特殊情况，pageInfo.list对象里面的pfMoney和pfPaymentRate属性为 0  则表示非本人查看，页面中的出场费跟保证金需用*代替  
+
+</p>
+<pre><code>    标题为商家名：pageInfo.list.order.oBName
+    角色为：pageInfo.list.pfPersonTypeName
+    电话为 pageInfo.list.order.oPhone</code></pre>
+<pre><code class="lang-json">{
+    "dec": "成功",
+    "pageInfo": {
+        "pageNum": 1,
+        "pageSize": 1,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 0,
+        "endRow": 0,
+        "total": 1,
+        "pages": 1,
+        "list": [{
+            "pfId": "2603acf1efb34447a0e445feab62ea24", //商演id
+            "pfTime": null,
+            "pfBucket": null,
+            "pfCity": "广州",
+            "pfPersonRole": null,//商演艺人类型id
+            "pfPersonRoleName": null,//商演艺人类型名称
+            "pfPersonType": "5f223d7bfa07489b88ee40ad82147b56", //商演角色id
+            "pfPersonTypeName": "test",//商演角色名称
+            "pfPersonHeight": 160.0,//身高
+            "pfPersonWeight": null,//体重
+            "pfPersonBust": null,//罩杯
+            "pfMoney": 1000,//金额
+            "pfPaymentRate": 30,//定金
+            "pfInfo": null,
+            "pfDemand": null,
+            "pfPic": null,
+            "pfIsFree": 2,
+            "pfStartTime": 1510156800000,
+            "pfEndTime": 1510156800000,
+            "pfAId": "fd74c385b1544492995acc62752a42ce",//艺人id
+            "pfScId": null,
+            "pfDeleted": 0,
+            "pfCreateTime": 1508125415000,
+            "pfModifyTime": 1510130502000,
+            "pfType": 1,
+            "isApply": 0,
+            "applyNum": 2,
+            "usable": 1,
+            "artist": null,
+            "order": {
+                "oId": "61538626f2d54a50bb8e318d3df73c3a",
+                "oNumber": "20171108745047",
+                "oAType": "5f223d7bfa07489b88ee40ad82147b56",
+                "oAId": "fd74c385b1544492995acc62752a42ce",
+                "oBId": "307dda513f26446fbc2fa690b24a94ee",
+                "oDId": null,
+                "oPfId": "2603acf1efb34447a0e445feab62ea24",
+                "oSubMoney": 6.60,
+                "welfare": "双程路费",
+                "explain": "说明",
+                "oMoney": 22.00,
+                "oStatus": 0,
+                "oGos": 0,
+                "oQa": 0,
+                "oIsEval": 0,
+                "oComment": null,
+                "oRefuse": null,
+                "oLat": "23.144807523599905",
+                "oLng": "113.33561293753215",
+                "oBName": "权志",
+                "oAName": "test",
+                "oDType": "test",
+                "oPhone": "17098905192",
+                "oAddress": "体育东路140至148号",
+                "oLinkName": "权志",
+                "oStartTime": 1510156800000,
+                "oEndTime": 1510156800000,
+                "oPvId": "19",
+                "oCtId": "198",
+                "oDtId": "1815",
+                "oPvName": "广东省",
+                "oCtName": "广州市",
+                "oDtName": "天河区",
+                "oLvJyzcc": 8.00,
+                "oLvZjfy": 0.00,
+                "oLvSjsjtc": 37.50,
+                "oLvSjyrtc": 37.50,
+                "oLvSdlcc": 0.00,
+                "oLvQdlcc": 0.00,
+                "oLvPttc": 0,
+                "oLvJsdl": null,
+                "oCreateTime": 1510130502000,
+                "oModifyTime": 1510130548000,
+                "artist": null,
+                "businesses": null,
+                "oPic": null,
+                "perform": null,
+                "demand": null,
+                "agencyFee": null
+            },
+            "orderList": [{
+                "oId": "61538626f2d54a50bb8e318d3df73c3a",
+                "oNumber": "20171108745047",
+                "oAType": "5f223d7bfa07489b88ee40ad82147b56",
+                "oAId": "fd74c385b1544492995acc62752a42ce",
+                "oBId": "307dda513f26446fbc2fa690b24a94ee",
+                "oDId": null,
+                "oPfId": "2603acf1efb34447a0e445feab62ea24",
+                "oSubMoney": 6.60,
+                "welfare": "双程路费",
+                "explain": "说明",
+                "oMoney": 22.00,
+                "oStatus": 0,
+                "oGos": 0,
+                "oQa": 0,
+                "oIsEval": 0,
+                "oComment": null,
+                "oRefuse": null,
+                "oLat": "23.144807523599905",
+                "oLng": "113.33561293753215",
+                "oBName": "权志",
+                "oAName": "test",
+                "oDType": "test",
+                "oPhone": "17098905192",
+                "oAddress": "体育东路140至148号",
+                "oLinkName": "权志",
+                "oStartTime": 1510156800000,
+                "oEndTime": 1510156800000,
+                "oPvId": "19",
+                "oCtId": "198",
+                "oDtId": "1815",
+                "oPvName": "广东省",
+                "oCtName": "广州市",
+                "oDtName": "天河区",
+                "oLvJyzcc": 8.00,
+                "oLvZjfy": 0.00,
+                "oLvSjsjtc": 37.50,
+                "oLvSjyrtc": 37.50,
+                "oLvSdlcc": 0.00,
+                "oLvQdlcc": 0.00,
+                "oLvPttc": 0,
+                "oLvJsdl": null,
+                "oCreateTime": 1510130502000,
+                "oModifyTime": 1510130548000,
+                "artist": null,
+                "businesses": null,
+                "oPic": null,
+                "perform": null,
+                "demand": null,
+                "agencyFee": null
+            }, {
+                "oId": "de489694994d49f881d24a729a88cb90",
+                "oNumber": "20171108301502",
+                "oAType": "5f223d7bfa07489b88ee40ad82147b56",
+                "oAId": "fd74c385b1544492995acc62752a42ce",
+                "oBId": "307dda513f26446fbc2fa690b24a94ee",
+                "oDId": null,
+                "oPfId": "2603acf1efb34447a0e445feab62ea24",
+                "oSubMoney": 150.00,
+                "welfare": "酒店入住",
+                "explain": null,
+                "oMoney": 500.00,
+                "oStatus": 3,
+                "oGos": 0,
+                "oQa": 0,
+                "oIsEval": 0,
+                "oComment": null,
+                "oRefuse": "已选择其他商户",
+                "oLat": "23.144807523599905",
+                "oLng": "113.33561293753215",
+                "oBName": "权志",
+                "oAName": "test",
+                "oDType": "test",
+                "oPhone": "17098905192",
+                "oAddress": "体育东路140至148号",
+                "oLinkName": "权志",
+                "oStartTime": 1510156800000,
+                "oEndTime": 1510156800000,
+                "oPvId": "19",
+                "oCtId": "198",
+                "oDtId": "1815",
+                "oPvName": "广东省",
+                "oCtName": "广州市",
+                "oDtName": "天河区",
+                "oLvJyzcc": 8.00,
+                "oLvZjfy": 0.00,
+                "oLvSjsjtc": 37.50,
+                "oLvSjyrtc": 37.50,
+                "oLvSdlcc": 0.00,
+                "oLvQdlcc": 0.00,
+                "oLvPttc": 0,
+                "oLvJsdl": null,
+                "oCreateTime": 1510127176000,
+                "oModifyTime": 1510130551000,
+                "artist": null,
+                "businesses": null,
+                "oPic": null,
+                "perform": null,
+                "demand": null,
+                "agencyFee": null
+            }],
+            "pfPicPath": null
+        }],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "lastPage": 1,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [1]
+    },
+    "message": 1
+}</code></pre>
+<h2 id="201711081439">朋友圈记录</h2>
+
+<blockquote>
+<p>app/find/find
+
+</p>
+</blockquote>
+<p>参数：<br>    pageNum:页码<br>    pageSize:页记录数  
+
+
+</p>
+<p>返回值： 
+
+</p>
+<pre><code>findList：{
+    uName：用户名  
+    uPicPath：头像路径  
+    uTypeName：用户角色 
+    imgsPath：朋友圈发表图片
+    content:朋友圈发表内容  
+    time：发表时间  
+    praiseList：点赞列表{
+                            uName：用户名  
+                            uPicPath：头像路径  
+                            time：点赞时间  
+                        }
+    commentList：评论列表
+                （包含回复，由replyCid判断，为空为评论，非空为回复）
+                  对应下面的返回json的commentList的例子：
+                        'test' ：'666'
+                        '财富君庭' 回复 'test' : '6毛线'
+                        {
+                            uName：用户名  
+                            content：评论内容  
+                            time：评论时间  
+                            replyName：被回复的用户名
+                         }
+} </code></pre>
+<pre><code class="lang-json">{
+    "findList": [
+        {
+            "id": "09698779d1d148fca18dda6928542f02",
+            "uId": "6548fd54b3e1474d89863382b8b9b48a",
+            "content": "986",
+            "imgs": "upload//images//find//2a1ab12f4b054509b34b121033d3d0a9.jpg,upload//images//find//ccfde266224c492c82b1b8fb08cdae61.png",
+            "time": 1509930823000,
+            "imgsPath": [
+                "http://192.168.0.88:8086/artists/upload//images//find//2a1ab12f4b054509b34b121033d3d0a9.jpg",
+                "http://192.168.0.88:8086/artists/upload//images//find//ccfde266224c492c82b1b8fb08cdae61.png"
+            ],
+            "uName": "test",
+            "uPic": "upload//images//headPortrait//0e1b13ff99644562af6b4a0aab1e9bd3.jpg",
+            "uPicPath": "http://192.168.0.88:8086/artists/upload//images//headPortrait//0e1b13ff99644562af6b4a0aab1e9bd3.jpg",
+            "uTypeName": "testType",
+            "praiseList": [
+                {
+                    "id": "bcfa9fc5ba8aaa9cdd89e6a1bf4eebcb",
+                    "fid": "09698779d1d148fca18dda6928542f02",
+                    "uid": "6548fd54b3e1474d89863382b8b9b48a",
+                    "time": 1509930823000,
+                    "uName": "test",
+                    "uPic": "upload//images//headPortrait//0e1b13ff99644562af6b4a0aab1e9bd3.jpg",
+                    "uPicPath": "http://192.168.0.88:8086/artists/upload//images//headPortrait//0e1b13ff99644562af6b4a0aab1e9bd3.jpg"
+                }
+            ],
+            "commentList": [
+                {
+                    "id": "a0dfe624080189ec8c9573e014787f25",
+                    "fid": "09698779d1d148fca18dda6928542f02",
+                    "content": "6666",
+                    "uid": "6548fd54b3e1474d89863382b8b9b48a",
+                    "replyCid": null,
+                    "time": 1509932196000,
+                    "uName": "test",
+                    "uPic": "upload//images//headPortrait//0e1b13ff99644562af6b4a0aab1e9bd3.jpg",
+                    "replyName": null
+                },
+                {
+                    "id": "b0a7c7cccb19faa05ebc248651ae7c7a",
+                    "fid": "09698779d1d148fca18dda6928542f02",
+                    "content": "6毛线",
+                    "uid": "000055c764794de19cd65ba8c59d5cf0",
+                    "replyCid": "a0dfe624080189ec8c9573e014787f25",
+                    "time": 1509932499000,
+                    "uName": "财富君庭",
+                    "uPic": null,
+                    "replyName": "test"
+                }
+            ]
+        }
+    ],
+    "message": 1
+}</code></pre>
+<h2 id="201711061439">朋友圈回复评论</h2>
+
+<blockquote>
+<p>app/find/reply
+
+</p>
+</blockquote>
+<p>参数：<br>    cid:朋友圈评论id<br>    tokenContent：token值<br>    content:回复内容（不超过100个字）
+
+</p>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"回复成功","message":1}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"回复成功","message":1}</code></pre>
+<h2 id="201711061438">朋友圈删除评论</h2>  
+
+<blockquote>
+<p>app/find/deleteComment
+
+</p>
+</blockquote>
+<p>参数：<br>    cid:朋友圈评论id<br>    tokenContent：token值  
+
+</p>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"删除评论成功","message":1}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"删除评论成功","message":1}</code></pre>
+<h2 id="201711061436">朋友圈评论</h2>
+
+<blockquote>
+<p>app/find/comment
+
+</p>
+</blockquote>
+<p>参数：<br>    fid:朋友圈记录id<br>    tokenContent：token值<br>    content:评论内容  （不超过100个字）
+
+</p>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"评论成功","message":1}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"评论成功","message":1}</code></pre>
+<h2 id="201711061435">朋友圈点赞与取消点赞</h2>
+
+<blockquote>
+<p>app/find/praise
+
+</p>
+</blockquote>
+<p>说明：调用该接口时，1.当前tokenContent用户对fid朋友圈无点赞记录，则点赞。
+                    2.当前tokenContent用户对fid朋友圈有点赞记录，则取消点赞。
+
+</p>
+<p>参数：<br>    fid:朋友圈记录id<br>    tokenContent：token值  
+
+</p>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"点赞成功","message":1}<br>    {"dec":"取消点赞成功","message":2}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"点赞成功","message":1}</code></pre>
+<h2 id="201711061434">删除朋友圈</h2>
+
+<blockquote>
+<p>app/find/delete  
+
+</p>
+</blockquote>
+<p>参数：<br>    id:朋友圈记录id<br>    tokenContent：token值  
+
+</p>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"删除成功","message":1}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"删除成功","message":1}</code></pre>
+<h2 id="201711021503">发表朋友圈</h2>
+
+<blockquote>
+<p>app/find/publish
+
+</p>
+</blockquote>
+<p>参数:(post提交)
+    content:内容（100个字以内）<br>    tokenContent：token值
+
+</p>
+<pre><code>图片文件的提交方式类似于接口 app/common/setHeadPortrait （图片不能超过9张）
+多个文件的参数名以file开头，其余不做限制。（例：file,file1,file2...）  </code></pre>
+<p>返回值：<br>    {"dec":"token不存在","message":0}<br>    {"dec":"图片上传异常","message":1}<br>    {"dec":"发表成功","message":2}<br>    {"dec":"您还不是艺人或商家","message":-1}   
+
+</p>
+<pre><code class="lang-json">{"dec":"发表成功","message":2}</code></pre>
+<h2 id="201710301758">推荐商演</h2>
+
+<blockquote>
+<p>app/demand/getRecommendDemand  
+
+</p>
+</blockquote>
+<p>参数：<br>     pageNum(页码int),<br>     pageSize(页面大小int),<br>     lat(纬度：double),<br>     lng(经度：double)<br>返回值：（同根据类型找商演接口）  
+
+</p>
+<pre><code class="lang-json">    {
+    "dec": "get success",
+    "pageInfo": {
+        "pageNum": 1,
+        "pageSize": 1,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 1,
+        "total": 95,
+        "pages": 95,
+        "list": [
+            {
+                "dId": "8068e9da1038471eb98c4552a475a2ff",
+                "dName": "1.7广州琶醍酒吧街的演出",
+                "dStatus": 1,
+                "dPersonType": "68929230bc1a47c5bade87a0e272f110",
+                "dPersonTypeName": "气氛宝贝",
+                "dPersonRole": "女性",
+                "dPersonHeight": 160,
+                "dPersonWeight": 45,
+                "dPersonBust": "B罩杯",
+                "dServerAddress": "广东省广州市海珠区磨碟沙大街",
+                "dPersonNum": 15,
+                "dAcceptedNum": 0,
+                "dApplyNum": 3,
+                "dMoney": 280,
+                "dServer": "免费WIFI,双层路费,入住酒店,天上一半,天上全包,地上一半,地上全包,司机接待,空调,单程路费",
+                "dRequire": "160以上，活泼，时尚会搞气氛，能应酬",
+                "dPic": "upload//images//business//pic//e7ed757971364525998fb6df4dd5a898.png",
+                "dBId": "09a8ffb65c0f459592032b62009f9c12",
+                "dLId": "bbeea73921614a26917f01b102f6951d",
+                "dBType": "1",
+                "dCityName": "广州市",
+                "dScopeMoneyLower": null,
+                "dScopeMoneyHight": null,
+                "dStartTime": 1483718400000,
+                "dEndTime": 1483718400000,
+                "dTimeBucket": null,
+                "dRefalshTime": 1483401016000,
+                "dCreatTime": 1483401016000,
+                "dModifyTime": 1483401016000,
+                "distance": 3661,
+                "location": {
+                    "lId": "bbeea73921614a26917f01b102f6951d",
+                    "lDetailAddress": "广东省广州市海珠区磨碟沙大街",
+                    "lProvince": "19",
+                    "lCity": "198",
+                    "lDistrict": "1814",
+                    "lLat": "23.11298",
+                    "lLng": "113.3447",
+                    "pName": "广东省",
+                    "cName": "广州市",
+                    "dName": "1.7广州琶醍酒吧街的演出",
+                    "lCreateTime": 1483401016000,
+                    "lModifyTime": 1483401016000
+                },
+                "recommend": false,
+                "isApply": false,
+                "dPicPath": "http://192.168.0.88:8086/artists/upload//images//business//pic//e7ed757971364525998fb6df4dd5a898.png",
+                "businesses": {
+                    "bId": "09a8ffb65c0f459592032b62009f9c12",
+                    "bName": "广州白云区皇家8号酒吧",
+                    "bUserName": null,
+                    "bPic": null,
+                    "bType": null,
+                    "bPhone": null,
+                    "bAddress": null,
+                    "bLicense": null,
+                    "bIdCard": null,
+                    "bStatus": null,
+                    "bUId": null,
+                    "bRate": null,
+                    "bCollectNum": null,
+                    "bLId": null,
+                    "bConsumption": null,
+                    "bCreateTime": null,
+                    "bModifyTime": null,
+                    "bTypeName": null,
+                    "location": null,
+                    "bLPicPath": null,
+                    "bIdPicPath": null,
+                    "bpicUrl": null,
+                    "bIdBlowPicPath": null
+                },
+                "dpicPath": "http://192.168.0.88:8086/artists/upload//images//business//pic//e7ed757971364525998fb6df4dd5a898.png"
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 2,
+        "lastPage": 8,
+        "isFirstPage": true,
+        "isLastPage": false,
+        "hasPreviousPage": false,
+        "hasNextPage": true,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    "message": 1
+}</code></pre>
+<h2 id="201710301756">推荐艺人</h2> 
+
+<blockquote>
+<p>app/artist/getArtistByRecommend  
+
+</p>
+</blockquote>
+<p>参数：  
+
+</p>
+<pre><code>     pageNum(页码int),pageSize(页面大小int),lat(纬度：double),lng(经度：double)  </code></pre>
+<p>返回值：（同根据类型找艺人接口）  
+
+</p>
+<pre><code class="lang-json">    {
+    "dec": "operation success",
+    "pageInfo": {
+        "pageNum": 1,
+        "pageSize": 1,
+        "size": 1,
+        "orderBy": null,
+        "startRow": 1,
+        "endRow": 1,
+        "total": 21,
+        "pages": 21,
+        "list": [
+            {
+                "aId": "fd74c385b1544492995acc62752a42ce",
+                "aName": "test",
+                "aPic": null,
+                "aJob": "test",
+                "aCash": 0,
+                "aAdept": null,
+                "aHeight": 160,
+                "aWeight": 50,
+                "aBust": null,
+                "aPicture": null,
+                "aVideoId": null,
+                "aServiceCity": "广州",
+                "aSex": null,
+                "aPhone": "13045899405",
+                "aAddress": null,
+                "aIdCard": null,
+                "aIdCardPic": null,
+                "aRole": 4,
+                "aLId": "5a5f9f21592845c9838be0ddf75d9e3f",
+                "aOrderNum": 0,
+                "aMoney": 1000,
+                "aRate": 30,
+                "aGoodNum": 0,
+                "aFansNum": 0,
+                "aUId": "6548fd54b3e1474d89863382b8b9b48a",
+                "aInfo": "TA有点害羞，没有介绍自己",
+                "aStatus": 1,
+                "aCreateTime": 1508125415000,
+                "aModifyTime": 1509084888000,
+                "aAge": null,
+                "aType": "5f223d7bfa07489b88ee40ad82147b56",
+                "aTypeName": "test",
+                "aExperience": null,
+                "aRefalshTime": 1508125415000,
+                "location": "广东省广州市天河区",
+                "artistTypeLists": null,
+                "aPerformStatus": 0,
+                "whetherRecommend": false,
+                "roleName": null,
+                "distance": 0,
+                "uFreezeTime": null,
+                "isAgent": 1,
+                "channelId": null,
+                "artistIdPicPath": null,
+                "artistIdBlowPicPath": null,
+                "apicturePath": null,
+                "artistPicPath": null,
+                "goos": 5
+            }
+        ],
+        "firstPage": 1,
+        "prePage": 0,
+        "nextPage": 2,
+        "lastPage": 8,
+        "isFirstPage": true,
+        "isLastPage": false,
+        "hasPreviousPage": false,
+        "hasNextPage": true,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+        ]
+    },
+    "message": 1
+}</code></pre>
+<h2 id="201710201018">登录</h2>
+
+<blockquote>
+<p>fw/app/common/login
+
+</p>
+</blockquote>
+<p>参数：同以前
+返回值：同以前，新增message = 4 :表示“该手机已被冻结”
+
+
+</p>
+<h2 id="201710171657">获取启动页广告图</h2>  
+
+<blockquote>
+<p>app/advertisement/getAppAdvertisement  
+
+</p>
+</blockquote>
+<p>参数：无<br>返回值：<br>    imgPath:图片路径， 
+    url:图片链接  
+
+</p>
+<pre><code class="lang-json">{
+    "id":"a89f4a38db08430a9eb756a49feb8f2f",
+    "img":"upload//images//advertisement//9c11c709610a43eeb752073917ab7d0e.png",
+    "url":"www.baidu.com",
+    "status":1,
+    "imgPath":"http://192.168.0.88:8086/artists/upload//images//advertisement//9c11c709610a43eeb752073917ab7d0e.png"
+}</code></pre>
+<h2 id="201710171704">QQ登录</h2>  
+
+<blockquote>
+<p>fw/app/common/qqLogin  
+
+</p>
+</blockquote>
+<p>参数： （全部必填）<br>     accessToken<br>     openId<br>     lat：纬度<br>     lng：经度    
+
+</p>
+<p>返回值：  
+
+</p>
+<p>   正常数据返回数据的json格式同用户登录接口（fw/app/common/login）<br>   异常情况：三种<br>   {message:-1,dec:"缺少参数"}<br>   {message:0,dec:"QQ验证失败"}<br>   {message:1,dec:"账号未注册,请先去注册"}    
+
+
+
+</p>
+<h2 id="201710171705">wx登录</h2>  
+
+<blockquote>
+<p>fw/app/common/wxLogin  
+
+</p>
+</blockquote>
+<p>参数：  （全部必填）<br>    unionId<br>    lat：纬度<br>    lng：经度  
+
+</p>
+<p>返回值：  
+
+</p>
+<p>   正常数据返回数据的json格式同用户登录接口（fw/app/common/login）<br>   异常情况：2种<br>   {message:-1,dec:"缺少参数"}<br>   {message:1,dec:"账号未注册,请先去注册"}    
+
+
+
+</p>
+<h2 id="201710171706">绑定QQ</h2> 
+
+<blockquote>
+<p>fw/app/common/bindQQ  
+
+</p>
+</blockquote>
+<p>参数：   （全部必填）<br>    accessToken<br>    openId<br>    lat：纬度<br>    lng：经度<br>    phone：手机号<br>    code：验证码   
+
+</p>
+<p>返回值：  
+
+</p>
+<pre><code>正常数据返回数据的json格式同用户登录接口（fw/app/common/login）  </code></pre>
+<p>   异常情况：4种<br>   {message:-1,dec:"缺少参数"}<br>   {message:0,dec:"QQ验证失败"}<br>   {message:1,dec:"验证码错误"}<br>   {message:2,dec:"验证码过时"}   
+
+
+
+
+</p>
+<h2 id="201710171707">绑定WX</h2>
+
+<blockquote>
+<p>fw/app/common/bindWX  
+
+</p>
+</blockquote>
+<p>参数 ：（全部必填）   
+
+</p>
+<pre><code>unionId  
+lat：纬度  
+lng：经度  
+phone：手机号  
+code：验证码   </code></pre>
+<p>返回值：  
+
+</p>
+<pre><code>正常数据返回数据的json格式同用户登录接口（fw/app/common/login）  </code></pre>
+<p>   异常情况：3种<br>   {message:-1,dec:"缺少参数"}<br>   {message:1,dec:"验证码错误"}<br>   {message:2,dec:"验证码过时"}  
+</p>
+</body></html>

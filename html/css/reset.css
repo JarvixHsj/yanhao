@@ -1,0 +1,60 @@
+/*reset 样式 */
+*,::after ,::before{
+	margin: 0;
+	padding: 0;
+	/*font-family: "Microsoft YaHei","黑体",sans-serif;*/
+	font-size: 0.4rem;
+	/*font-weight: 550;*/
+	color: #423363;
+	/*设置移动端的默认点击事件  高亮是透明的*/
+	-webkit-tap-highlight-color: transparent;
+	/*设置 盒子 以什么计算 防止溢出*/
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	/*overflow-y: hidden;*/
+}
+/*@font-face {
+  font-family: '华文细黑';   
+  src: url('华文细黑.ttf'); 
+}*/
+a:hover{
+	text-decoration: none;
+}
+a{
+	text-decoration:none;
+}
+input{
+	outline: none;
+	border: none;
+	/*清除表单 默认的样式*/
+	-webkit-appearance: none;
+}
+img{
+	display: block;
+}
+ul,ol{
+	list-style: none;
+}
+/*清除浮动*/
+.clearfix::before,
+.clearfix::after{
+	content: "";
+	height: 0;
+	line-height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+　::-webkit-input-placeholder { /* WebKit browsers */
+　　color:#ccc;
+　　}
+　　:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+　　color:#ccc;
+　　}
+　　::-moz-placeholder { /* Mozilla Firefox 19+ */
+　　color:#ccc;
+　　}
+　　:-ms-input-placeholder { /* Internet Explorer 10+ */
+　　color:#ccc;
+　　}

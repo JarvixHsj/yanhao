@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="my-h100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
+		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+        <!-- <script src="js/Ajax.js"></script> -->
+		<script type="text/javascript" src="js/view.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" charset="UTF-8"></script>
+	</head>
+	<body class="my-h100">
+		<header class="dis-flex box-between box-border-bottom">
+				<span class="sp-inco-1">
+					<span class="inco"></span>
+				</span>
+				<span>登录</span>
+				<span class="sp-inco-2 dis-flex box-ju-end">
+					<!--<span class="inco"></span>-->
+					<!--<span class="inco"></span>-->
+				</span>
+		</header>
+		<section class="main my-h100">
+			<div class="login-from">
+				<div class="login-input">
+					<input type="text" class="iphone" placeholder="请输入手机号码"/>
+					<span class="number-inco"></span>
+				</div>
+				<div class="login-input">
+					<span class="number-inco"></span>
+					<input type="password" class="ps" placeholder="请输入密码"/>
+				</div>
+			</div>
+			<div class="login-submit dis-flex box-center">
+				<span>登陆</span>
+			</div>
+			<div class="login-point dis-flex box-between">
+				<span>忘记密码？</span>
+				<span>快速注册</span>
+			</div>
+			<div class="login-escrow dis-flex box-column box-al-center">
+				<div class="escrow-title">第三方登陆方式</div>
+				<div class="escrow-inco dis-flex box-between">
+					<div class="escrow-inco-p dis-flex box-column">
+						<div class="inco"></div>
+						<div class="inco-font">微信</div>
+					</div>
+					<div class="escrow-inco-p dis-flex box-column">
+						<div class="inco"></div>
+						<div class="inco-font">QQ</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--<footer class="dis-flex">
+				<div class="ic-me box-center">
+					<div class="f-inco">
+						<div class="ic-up">
+							<img src="img/ic_22.png" />
+						</div>
+						<div class="ic-dn">首页</div>
+					</div>
+				</div>
+				<div class="ic-me box-center">
+					<div class="f-inco">
+						<div class="ic-up">
+							<img src="img/ic_28.jpg" />
+						</div>
+						<div class="ic-dn">三项制度</div>
+					</div>
+				</div>
+				<div class="ic-me box-center">
+					<div class="f-inco">
+						<div class="ic-up">
+							<img src="img/ic_25.jpg" />
+						</div>
+						<div class="ic-dn">个人</div>
+					</div>
+				</div>
+			</footer>-->
+	</body>
+</html>
+
+<script>
+	var loginUrl = "http://120.78.158.132:8088/fw/app/common/login";
+	$('.login-submit').on('click',function(){
+		var iphone = document.querySelector('.iphone').value.trim();
+		var ps = document.querySelector('.ps').value;
+		var par = "phone="+iphone+'&'+'password='+ps;
+		$.ajax({
+            url: 'http://120.78.158.132:8088/fw/app/common/login',
+            type: 'GET',
+            data: par,
+            dataType : 'json',
+            success:function(res){
+            	console.log(res);
+            	if(res.message==1){
+            		alert('登录成功！')
+                    document.cookie="tokenContent="+res.tokenContent;
+                    // console.log("登陆成功,tokenContent已存入cookie中");
+                }else if(res.message==2){
+                    alert("密码错误");
+                }else if(res.message==3){
+                    alert("该手机未注册");
+                }else if(res.message==4){
+                    alert("该手机已被冻结");
+                }
+            }
+        });
+		// $$.jsonpAjax(loginUrl,par);
+	})
+	// function callback(res){
+	// 	console.log(res);return false;
+	// 	if(res.message==1){
+ //            document.cookie="tokenContent="+res.tokenContent;
+ //            console.log("登陆成功,tokenContent已存入cookie中");
+ //        }else if(res.message==2){
+ //            console.log("密码错误");
+ //        }else if(res.message==3){
+ //            console.log("该手机未注册");
+ //        }else if(res.message==4){
+ //            console.log("该手机已被冻结");
+ //        }
+	// }
+// 	var submit = document.querySelector('.login-submit');
+// 	submit.onclick = function () {
+// 	    /*获取输入的账号密码，没有做验证*/
+// 		var iphone = document.querySelector('.iphone').value.trim();
+// 		var ps = document.querySelector('.ps').value;
+// 		var par = "phone="+iphone+'&'+'password='+ps;
+// 		var url = "http://120.78.158.132:8088/fw/app/common/login";
+
+//         $$.myAjax({
+// 			url:url,
+// 			data:par,
+// 			method:"post",
+//             success:function(res){
+//                 if(res.message==1){
+//                     document.cookie="tokenContent="+res.tokenContent;
+//                     console.log("登陆成功,tokenContent已存入cookie中");
+//                 }else if(res.message==2){
+//                     console.log("密码错误");
+//                 }else if(res.message==3){
+//                     console.log("该手机未注册");
+//                 }else if(res.message==4){
+//                     console.log("该手机已被冻结");
+//                 }
+//             }
+// 		})
+// //        --------------------  封装Ajax插件 -------------------------------------
+
+
+
+//     }
+</script>
