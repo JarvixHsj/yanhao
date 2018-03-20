@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
 		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" charset="UTF-8"></script>
 		<style type="text/css">
 			 #cc-swiper-container {
       			width: 100%;
@@ -22,7 +23,7 @@
 			<span class="sp-inco-1">
 				<span class="inco"></span>
 			</span>
-			<span>我的订单</span>
+			<span>艺人详情</span>
 			<span class="sp-inco-2 dis-flex box-ju-end">
 				<!--<span class="inco"></span>-->
 				<!--<span class="inco"></span>-->
@@ -93,14 +94,14 @@
 							<span class="i-comment">3km</span>-->
 						</span>
 					</div>
-					<div class="df-e dis-flex">
+					<div class="df-e dis-flex ">
 						<span>￥</span>
-						<span>55660</span>
+						<span class="aMoney">55660</span>
 					</div>
-					<div class="df-b dis-flex">
-						<span class="desc">风情舞</span>
-						<span class="desc">异域舞</span>
-						<span class="desc">反串</span>
+					<div class="df-b dis-flex ajob">
+						<!-- <span class="desc">风情舞</span> -->
+						<!-- <span class="desc">异域舞</span> -->
+						<!-- <span class="desc">反串</span> -->
 						<span class="desc-sex dis-flex box-al-center">
 							<img src="img/女性icon@2x.png" /><span>24</span>
 						</span>
@@ -109,32 +110,28 @@
 						<span class="inco-main dis-flex box-al-center">
 							<span class="df-d-e-inco"></span>
 							<span>粉丝:</span>
-							<span>11</span>
+							<span class="aFunsNum">1</span>
 						</span>
 						<span class="inco-main dis-flex box-al-center">
 							<span class="df-d-e-inco"></span>
 							<span>身高:</span>
-							<span>11</span>
-							<span>cm</span>
+							<span class="height">11</span>
 						</span>
 						<span class="inco-main dis-flex box-al-center">
 							<span class="df-d-e-inco"></span>
 							<span>体重:</span>
-							<span>11</span>
-							<span>kg</span>
+							<span class="weight">11</span>
 						</span>
 					</div>
 					<div class="df-d dis-flex box-al-center">
 						<span class="inco-main dis-flex box-al-center">
 							<span class="df-d-e-inco"></span>
 							<span>定金:</span>
-							<span>30</span>
-							<span>%</span>
+							<span class="down-payment">30</span>
 						</span>
 					</div>
 				</div>
 			</div>
-			
 			<div class="select-card my-border-bottom my-margin-top-bottom">
 				<div class="card-title dis-flex my-border-bottom">
 					<div class="card-title-inco dis-flex box-al-center inco-border-bottom">
@@ -146,7 +143,7 @@
 				</div>
 				<div class="card-comment">
 					<div class="cc-banner">
-						<div class="assess-one-comment">
+						<div class="assess-one-comment info art_intro">
 							<p>岁月给予我们的，也不过是越活越明白，越活越真实，掠去那些个虚伪的天真，做尘世里最朴实、
 							善真的自己。平淡的流年，看一些着色的记忆，在恢弘的天幕下奔涌而走，无需感叹，那不是流失，
 							而是人生不可缺少的旋律。只要打开心窗，让心灵与万物交融，生命方能如诗如画。</p>
@@ -200,6 +197,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="select-card my-border-bottom my-margin-top-bottom">
 				<div class="card-title dis-flex my-border-bottom">
 					<div class="card-title-inco dis-flex box-al-center my-border-bottom">
@@ -212,85 +210,8 @@
 				<div class="card-comment">
 					<div class="cc-banner">
 						 <div id="cc-swiper-container" class="swiper-container">
-						    <div class="swiper-wrapper">
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
-						      	<div class="swiper-slide">
-						      		<div class="look-one">
-						      			<div class="look-one-pic">
-						      				<img src="img/f1.jpg"/>
-						      			</div>
-						      			<div class="look-one-name dis-flex box-al-center">
-						      				<span>高乐乐</span>
-						      			</div>
-						      			<div class="look-one-price dis-flex box-al-center">
-						      				<span>￥</span><span>56666</span>
-						      			</div>
-						      		</div>
-						      	</div>
+						    <div class="swiper-wrapper otherArtist">
+						      	
 						    </div>
 						  </div>
 					</div>
@@ -308,9 +229,9 @@
 				<div class="card-comment">
 					<div class="cc-banner">
 						<span class="city-btn">北京</span>
-						<span class="city-btn">上海</span>
+					<!-- 	<span class="city-btn">上海</span>
 						<span class="city-btn">成都</span>
-						<span class="city-btn">广州</span>
+						<span class="city-btn">广州</span> -->
 					</div>
 				</div>
 			</div>
@@ -456,9 +377,58 @@
 			$.ajax({
 				type: "POST",
 				url: "http://120.78.158.132:8088/app/artist/getArtistById",
-				data: "artistId=00177ec3cf724357b275fb97a3b5e134&tokenContent=3688a1c83d8d4b75b27262c5c4327a57",
-				success: function(msg){
-					alert( "Data Saved: " + msg );
+				data: "artistId=baa3f482c867493d95473865af3e4a6a&tokenContent=672a7553d38e4609ae440d8ce2928318",
+				success: function(data){
+					if(data.message == 1){
+						$('.df-a span').eq(0).html(data.artist.aName)			
+						$('.height').html(data.artist.aHeight)
+						$('.weight').html(data.artist.aWeight)
+						$('.art_intro').html(data.artist.aInfo)
+						$('.city-btn').html(data.artist.aServiceCity)
+						$('.aFunsNum').html(data.artist.aFansNum)
+						
+						if(data.artist.roleName == '男性'){
+							$('.desc-sex img').attr('src','img/男性icon@2x.png')
+							$('.desc-sex').css('color','#0870e0e8')
+						}
+						$('.desc-sex span').html(data.artist.aAge)
+						// 表演类型
+						if(data.artist.aJob){
+							strs=data.artist.aJob.split(","); //字符分割 
+							var ajobHtml = '';
+							for (i=0;i<strs.length ;i++ ) { 
+								ajobHtml += '<span class="desc">'+strs[i]+'</span>';
+							} 
+							if(ajobHtml){
+								$('.ajob').prepend(ajobHtml);
+							}
+						}
+						$('.down-payment').html(data.artist.aRate)
+						// 其他艺人
+						if(data.otherArtist){
+							var otherHtml = '';
+							for (var i = 0; i < data.otherArtist.length; i++) {
+								otherHtml += '<div class="swiper-slide">';
+									otherHtml += '<div class="look-one">';
+										otherHtml += '<div class="look-one-pic">';
+											otherHtml += '<img src="img/f1.jpg"/>';
+										otherHtml += '</div>';
+										otherHtml += '<div class="look-one-name dis-flex box-al-center">';
+											otherHtml += '<span>'+ data.otherArtist[i].aName +'</span>';
+										otherHtml += '</div>';
+										otherHtml += '<div class="look-one-price dis-flex box-al-center">';
+											otherHtml += '<span>￥</span><span>'+ data.otherArtist[i].aMoney +'</span>';
+										otherHtml += '</div>';
+									otherHtml += '</div>';
+								otherHtml += '</div>';
+							}
+							if(otherHtml){
+								$('.otherArtist').append(otherHtml)
+							}
+						}
+					}else{
+						alert('无该艺人信息');
+					}
 				}
 			});
 		</script>

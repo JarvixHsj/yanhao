@@ -10,6 +10,33 @@
 		<link rel="stylesheet" href="css/comm.css" charset="UTF-8"/>
 		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" charset="UTF-8"></script>
+		<script type="text/javascript">
+			/**         
+			 * 时间戳转换日期               
+			 * @param <int> unixTime    待时间戳(秒)               
+			 * @param <bool> isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)               
+			 * @param <int>  timeZone   时区               
+			 */  
+			  
+			function UnixToDate(unixTime, isFull, timeZone) {  
+			    if (typeof (timeZone) == 'number'){  
+			        unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;  
+			    }  
+			    var time = new Date(unixTime * 1000);  
+			    var ymdhis = "";  
+			    ymdhis += time.getUTCFullYear() + ".";  
+			    ymdhis += (time.getUTCMonth()+1) + ".";  
+			    ymdhis += time.getUTCDate();  
+			    if (isFull === true){  
+			        ymdhis += " " + time.getUTCHours() + ":";  
+			        ymdhis += time.getUTCMinutes() + ":";  
+			        ymdhis += time.getUTCSeconds();  
+			    }  
+			    return ymdhis;  
+			}  
+
+		</script>
 		<style type="text/css">
 			 #cc-swiper-container {
       			width: 100%;
@@ -62,35 +89,46 @@
 					</div>
 					<div class="df-e dis-flex">
 						<span>￥</span>
-						<span>55660</span>
+						<span class="dMoney">55660</span>
 					</div>
-					<div class="df-b dis-flex">
-						<span class="desc">风情舞</span>
-						<span class="desc">异域舞</span>
-						<span class="desc">反串</span>
+					<div class="df-b dis-flex bTypeName">
+						<!-- <span class="desc">风情舞</span> -->
+						<!-- <span class="desc">异域舞</span>
+						<span class="desc">反串</span> -->
 					</div>
 					<div class="df-c dis-flex box-al-center">
 						<span class="df-d-e-inco"></span>
 						<span>招募人数:</span>
-						<span>11</span>
+						<span class="dPersonNum">11</span>
 					</div>
 					<div class="df-d dis-flex box-al-center">
 						<span class="df-d-e-inco"></span>
 						<span>活动时间:</span>
-						<span>2017.06.09-2017.10.29</span>
+						<span class="start-end-time">2017.06.09-2017.10.29</span>
 					</div>
 				</div>
 			</div>
-			<div class="select-btn my-border-bottom">
+		<!-- 	<div class="select-btn my-border-bottom">
+				<div class="select-btn-center dis-flex box-al-center box-between">
+					<div class="s1 dis-flex box-al-center">
+						<span class="inco">
+							<img src="img/地点灰@2x.png"/>
+						</span>
+						<span class="comment my-font-size28 dAddress">地址</span>	
+					</div>
+					<div class="inco-rigth dis-flex box-al-center">
+						<img src="img/右箭头@2x.png"/>
+					</div>
+				</div>
+			</div> -->
+			<div class="select-btn">
 				<div class="select-btn-center dis-flex box-al-center box-between">
 					<div class="s1 dis-flex box-al-center">
 						<span class="inco">
 							<img src="img/地点灰@2x.png"/>
 						</span>
 						<span class="comment my-font-size28">地址</span>	
-					</div>
-					<div class="inco-rigth dis-flex box-al-center">
-						<img src="img/右箭头@2x.png"/>
+						<span class="comment my-font-size28 my-margin-left8 dServerAddress">广州大银行</span>	
 					</div>
 				</div>
 			</div>
@@ -101,7 +139,7 @@
 							<img src="img/地点灰@2x.png"/>
 						</span>
 						<span class="comment my-font-size28">商家</span>	
-						<span class="comment my-font-size28 my-margin-left8">广州大银行</span>	
+						<span class="comment my-font-size28 my-margin-left8 bName">广州大银行</span>	
 					</div>
 				</div>
 			</div>
@@ -194,6 +232,39 @@
 		<script type="text/javascript" src="js/view.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="js/swiper.min.js" ></script>
 		<script type="text/javascript">
+			$.ajax({
+				type: "POST",
+				url: "http://120.78.158.132:8088/app/demand/getDemandByDId",
+				data: "dId=003be2765fd446f2b85ea54bd26d3e7f&tokenContent=25498791ff82435ea5f1d1931da323d5",
+				success: function(data){
+					if(data.message == 1){
+						$('.df-a span').eq(0).html(data.demand.dName)			
+						$('.dMoney').html(data.demand.dMoney)
+						$('.dPersonNum').html(data.demand.dPersonNum)
+						$('.art_intro').html(data.demand.businesses.bTypeName)
+						$('.bName').html(data.demand.businesses.bName)
+						$('.dServerAddress').html(data.demand.dServerAddress)
+						data.demand.dStartTime = data.demand.dStartTime+'';
+						data.demand.dEndTime = data.demand.dEndTime+'';
+						$('.start-end-time').html(UnixToDate(data.demand.dStartTime.substr(0,10),'Y.m.d')+'-'+UnixToDate(data.demand.dEndTime.substr(0,10),'Y.m.d'));
+						// 表演类型
+						if(data.demand.businesses.bTypeName){
+							strs=data.demand.businesses.bTypeName.split(","); //字符分割 
+							var ajobHtml = '';
+							for (i=0;i<strs.length ;i++ ) { 
+								ajobHtml += '<span class="desc">'+strs[i]+'</span>';
+							} 
+							if(ajobHtml){
+								$('.bTypeName').prepend(ajobHtml);
+							}
+						}
+					}else{
+						alert('无该商演详情信息');
+					}
+					
+				}
+			});
+
 			var mySwiper = new Swiper('#bb-swiper-container', {
 				loop: true,
 				observer:true,
