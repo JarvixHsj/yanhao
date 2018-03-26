@@ -36,6 +36,7 @@
 			    return ymdhis;  
 			}  
 
+			var img_path = 'http://120.78.158.132:8088/artists/';
 		</script>
 		<style type="text/css">
 			 #cc-swiper-container {
@@ -212,7 +213,7 @@
 					</div>
 				</div>
 				<div class="card-comment">
-					<div class="cc-banner">
+					<div class="cc-banner b_require" style="margin-bottom:50px;">
 						<p>岁月给予我们的，也不过是越活越明白，越活越真实，掠去那些个虚伪的天真，做尘世里最朴实、
 						善真的自己。平淡的流年，看一些着色的记忆，在恢弘的天幕下奔涌而走，无需感叹，那不是流失，
 						而是人生不可缺少的旋律。只要打开心窗，让心灵与万物交融，生命方能如诗如画。</p>
@@ -258,6 +259,10 @@
 								$('.bTypeName').prepend(ajobHtml);
 							}
 						}
+						// console.log(data.demand.dRequire);
+						$('.b_require p').html(data.demand.dRequire)
+						
+
 					}else{
 						alert('无该商演详情信息');
 					}

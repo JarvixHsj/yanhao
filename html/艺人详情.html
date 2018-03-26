@@ -11,6 +11,34 @@
 		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/style.css" charset="UTF-8"/>
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js" charset="UTF-8"></script>
+		<script type="text/javascript">
+			/**         
+			 * 时间戳转换日期               
+			 * @param <int> unixTime    待时间戳(秒)               
+			 * @param <bool> isFull    返回完整时间(Y-m-d 或者 Y-m-d H:i:s)               
+			 * @param <int>  timeZone   时区               
+			 */  
+			  
+			function UnixToDate(unixTime, isFull, timeZone) {  
+			    if (typeof (timeZone) == 'number'){  
+			        unixTime = parseInt(unixTime) + parseInt(timeZone) * 60 * 60;  
+			    }  
+			    var time = new Date(unixTime * 1000);  
+			    var ymdhis = "";  
+			    ymdhis += time.getUTCFullYear() + ".";  
+			    ymdhis += (time.getUTCMonth()+1) + ".";  
+			    ymdhis += time.getUTCDate();  
+			    if (isFull === true){  
+			        ymdhis += " " + time.getUTCHours() + ":";  
+			        ymdhis += time.getUTCMinutes() + ":";  
+			        ymdhis += time.getUTCSeconds();  
+			    }  
+			    return ymdhis;  
+			}  
+
+			var img_path = 'http://120.78.158.132:8088/artists/';
+
+		</script>
 		<style type="text/css">
 			 #cc-swiper-container {
       			width: 100%;
@@ -34,7 +62,22 @@
 				<div class="banner-pic">
 					<div id="bb-swiper-container" class="swiper-container">
 					    <div class="swiper-wrapper">
-						    <div class="swiper-slide ee-banner-main dis-flex box-column box-between">
+						    <div class="swiper-slide ee-banner-main dis-flex box-column box-between artist_pic">
+						    	<img src="img/bb1.jpg"/>
+					      	<!-- 	<div class="ee-banner-comment dis-flex">
+					      			<div></div>
+					      			<div><img src="img/bb2.jpg"/></div>
+					      			<div><img src="img/bb3.jpg"/></div>
+					      			<div><img src="img/bb4.jpg"/></div>
+					      		</div> -->
+					      	<!-- 	<div class="ee-banner-comment dis-flex">
+					      			<div><img src="img/bb1.jpg"/></div>
+					      			<div><img src="img/bb2.jpg"/></div>
+					      			<div><img src="img/bb3.jpg"/></div>
+					      			<div><img src="img/bb4.jpg"/></div>
+					      		</div> -->
+						    </div>
+					<!-- 	    <div class="swiper-slide ee-banner-main dis-flex box-column box-between">
 					      		<div class="ee-banner-comment dis-flex">
 					      			<div><img src="img/bb1.jpg"/></div>
 					      			<div><img src="img/bb2.jpg"/></div>
@@ -61,21 +104,7 @@
 					      			<div><img src="img/bb3.jpg"/></div>
 					      			<div><img src="img/bb4.jpg"/></div>
 					      		</div>
-						    </div>
-						    <div class="swiper-slide ee-banner-main dis-flex box-column box-between">
-					      		<div class="ee-banner-comment dis-flex">
-					      			<div><img src="img/bb1.jpg"/></div>
-					      			<div><img src="img/bb2.jpg"/></div>
-					      			<div><img src="img/bb3.jpg"/></div>
-					      			<div><img src="img/bb4.jpg"/></div>
-					      		</div>
-					      		<div class="ee-banner-comment dis-flex">
-					      			<div><img src="img/bb1.jpg"/></div>
-					      			<div><img src="img/bb2.jpg"/></div>
-					      			<div><img src="img/bb3.jpg"/></div>
-					      			<div><img src="img/bb4.jpg"/></div>
-					      		</div>
-						    </div>
+						    </div> -->
 					    </div>
 					    <!-- Add Pagination -->
 					 	<div class="swiper-pagination"></div>
@@ -179,19 +208,13 @@
 						<img src="img/演出icon@2x.png"/>
 					</div>
 					<div class="card-title-commnet dis-flex box-al-center">
-						<span class="my-font-size32">商家视频</span>
+						<span class="my-font-size32">艺人视频</span>
 					</div>
 				</div>
 				<div class="card-comment">
 					<div class="cc-banner">
 						 <div id="ff-swiper-container" class="swiper-container">
-						    <div class="swiper-wrapper">
-						      	<div class="swiper-slide"><img src="img/b1.jpg" class="cc-banner-img"/></div>
-						      	<div class="swiper-slide"><img src="img/b2.jpg" class="cc-banner-img"/></div>
-						      	<div class="swiper-slide"><img src="img/b1.jpg" class="cc-banner-img"/></div>
-						      	<div class="swiper-slide"><img src="img/b2.jpg" class="cc-banner-img"/></div>
-						      	<div class="swiper-slide"><img src="img/b1.jpg" class="cc-banner-img"/></div>
-						      	<div class="swiper-slide"><img src="img/b2.jpg" class="cc-banner-img"/></div>
+						    <div class="swiper-wrapper artist_video">
 						    </div>
 						  </div>
 					</div>
@@ -245,61 +268,8 @@
 						<span class="my-font-size32">评价</span>
 					</div>
 				</div>
-				<div class="card-comment">
-					<div class="cc-banner my-border-bottom">
-						<div class="assess-one-pic dis-flex box-al-center box-between">
-							<div class="assess-one-inco dis-flex box-al-center">
-								<div class="inco">
-									<img src="img/bb2.jpg"/>
-								</div>
-								<div class="info dis-flex box-column">
-									<div class="info-name dis-flex box-al-center">
-										<span>你还好么</span>
-									</div>
-									<div class="info-time dis-flex box-al-center">
-										<span>2015.12.12</span><span>2:00</span>
-									</div>
-								</div>
-							</div>
-							<div class="assess-one-star dis-flex box-al-center box-ju-end">
-								<span class="light-star"></span>
-								<span class="light-star"></span>
-								<span class="light-star"></span>
-								<span class="gray-star"></span>
-								<span class="gray-star"></span>
-							</div>
-						</div>
-						<div class="assess-one-comment">
-							<p>进而金额可热客人金额金融客家人客家人看今日可加热看人家可加热加热加热即可进入可加热客人</p>
-						</div>
-					</div>
-					<div class="cc-banner">
-						<div class="assess-one-pic dis-flex box-al-center box-between">
-							<div class="assess-one-inco dis-flex box-al-center">
-								<div class="inco">
-									<img src="img/bb2.jpg"/>
-								</div>
-								<div class="info dis-flex box-column">
-									<div class="info-name dis-flex box-al-center">
-										<span>你还好么</span>
-									</div>
-									<div class="info-time dis-flex box-al-center">
-										<span>2015.12.12</span><span>2:00</span>
-									</div>
-								</div>
-							</div>
-							<div class="assess-one-star dis-flex box-al-center box-ju-end">
-								<span class="light-star"></span>
-								<span class="light-star"></span>
-								<span class="light-star"></span>
-								<span class="gray-star"></span>
-								<span class="gray-star"></span>
-							</div>
-						</div>
-						<div class="assess-one-comment">
-							<p>进而金额可热客人金额金融客家人客家人看今日可加热看人家可加热加热加热即可进入可加热客人</p>
-						</div>
-					</div>
+				<div class="card-comment artist_comment">
+					
 				</div>
 			</div>
 		</section>
@@ -386,6 +356,8 @@
 						$('.art_intro').html(data.artist.aInfo)
 						$('.city-btn').html(data.artist.aServiceCity)
 						$('.aFunsNum').html(data.artist.aFansNum)
+						$('.artist_pic img').attr('src',img_path+data.artist.aPic)
+
 						
 						if(data.artist.roleName == '男性'){
 							$('.desc-sex img').attr('src','img/男性icon@2x.png')
@@ -411,7 +383,7 @@
 								otherHtml += '<div class="swiper-slide">';
 									otherHtml += '<div class="look-one">';
 										otherHtml += '<div class="look-one-pic">';
-											otherHtml += '<img src="img/f1.jpg"/>';
+											otherHtml += '<img src="'+img_path+data.otherArtist[i].aPic+'"/>';
 										otherHtml += '</div>';
 										otherHtml += '<div class="look-one-name dis-flex box-al-center">';
 											otherHtml += '<span>'+ data.otherArtist[i].aName +'</span>';
@@ -428,6 +400,73 @@
 						}
 					}else{
 						alert('无该艺人信息');
+					}
+				}
+			});
+
+			// 获取艺人视频
+			$.ajax({
+				type: "POST",
+				url: "http://120.78.158.132:8088/app/video/getVideoByAId?tokenContent=672a7553d38e4609ae440d8ce2928318&aId=383f0e54aa10434e86a15d31159bc0f2&pageNum=1&pageSize=3",
+				data: "",
+				success: function(data){
+					if(data.message == 1 && data.pageInfo.list.length > 0){
+						var res = data.pageInfo.list;
+						// 艺人视频
+						var otherHtml = '';
+						// console.log(data.pageInfo.list[0].vUrl);
+						for (var i = 0; i < data.pageInfo.list.length; i++) {
+							otherHtml += '<div class="swiper-slide"><a href="'+data.pageInfo.list[i].vUrl+'"><img src="'+img_path+data.pageInfo.list[i].vPic+'" class="cc-banner-img"/></a></div>';
+						}
+						if(otherHtml){
+							$('.artist_video').append(otherHtml)
+						}
+					}
+				}
+			});
+
+			// 获取艺人评价
+			$.ajax({
+				type: "POST",
+				url: "http://120.78.158.132:8088/app/comment/getCommentByAId?aId=bdba49e720b841d88864a7c9745b6441&tokenContent=672a7553d38e4609ae440d8ce2928318&pageSize=10&pageNum=1",
+				data: "",
+				success: function(data){
+					if(data.message == 1 && data.pageInfo.list.length > 0){
+						var res = data.pageInfo.list;
+						// 艺人评价
+						var html = '';
+						for (var i = 0; i < res.length; i++) {
+							html += '<div class="cc-banner">';
+								html += '<div class="assess-one-pic dis-flex box-al-center box-between">';
+									html += '<div class="assess-one-inco dis-flex box-al-center">';
+										html += '<div class="inco">';
+											html += '<img src="'+img_path+res[i].coPicPath+'"/>';
+										html += '</div>';
+										html += '<div class="info dis-flex box-column">';
+											html += '<div class="info-name dis-flex box-al-center">';
+												html += '<span>'+res[i].coBName+'</span>';
+											html += '</div>';
+											html += '<div class="info-time dis-flex box-al-center">';
+												html += '<span>'+UnixToDate(res[i].coCreateTime.toString().substr(0,10),'Y.m.d H:i')+'</span>';
+											html += '</div>';
+										html += '</div>';
+									html += '</div>';
+									html += '<div class="assess-one-star dis-flex box-al-center box-ju-end">';
+										html += '<span class="light-star"></span>';
+										html += '<span class="light-star"></span>';
+										html += '<span class="light-star"></span>';
+										html += '<span class="gray-star"></span>';
+										html += '<span class="gray-star"></span>';
+									html += '</div>';
+								html += '</div>';
+								html += '<div class="assess-one-comment">';
+									html += '<p>'+res[i].coContent+'</p>';
+								html += '</div>';
+							html += '</div>';
+						}
+						if(html){
+							$('.artist_comment').append(html)
+						}
 					}
 				}
 			});
