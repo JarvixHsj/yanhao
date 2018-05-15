@@ -60,16 +60,16 @@
 			<div class="main-banner">
 				<div class="banner-pic">
 					<div id="bb-swiper-container" class="swiper-container">
-					    <div class="swiper-wrapper">
+					    <div class="swiper-wrapper dpic">
 						      <div class="swiper-slide">
+						      	<img src="img/2345截图20171211173757.jpg" class="bb-baner-img" style=""/>
+						      </div>
+						<!--       <div class="swiper-slide">
 						      	<img src="img/2345截图20171211173757.jpg" class="bb-baner-img" style=""/>
 						      </div>
 						      <div class="swiper-slide">
 						      	<img src="img/2345截图20171211173757.jpg" class="bb-baner-img" style=""/>
-						      </div>
-						      <div class="swiper-slide">
-						      	<img src="img/2345截图20171211173757.jpg" class="bb-baner-img" style=""/>
-						      </div>
+						      </div> -->
 					    </div>
 					    <!-- Add Pagination -->
 					 	<div class="swiper-pagination"></div>
@@ -236,7 +236,7 @@
 			$.ajax({
 				type: "POST",
 				url: "http://120.78.158.132:8088/app/demand/getDemandByDId",
-				data: "dId=003be2765fd446f2b85ea54bd26d3e7f&tokenContent=25498791ff82435ea5f1d1931da323d5",
+				data: "dId=003be2765fd446f2b85ea54bd26d3e7f&tokenContent=2ba7a9099f5d46a5995c43d029d70955",
 				success: function(data){
 					if(data.message == 1){
 						$('.df-a span').eq(0).html(data.demand.dName)			
@@ -245,6 +245,8 @@
 						$('.art_intro').html(data.demand.businesses.bTypeName)
 						$('.bName').html(data.demand.businesses.bName)
 						$('.dServerAddress').html(data.demand.dServerAddress)
+						$('.dpic div img').attr('src',img_path + data.demand.dPic)
+
 						data.demand.dStartTime = data.demand.dStartTime+'';
 						data.demand.dEndTime = data.demand.dEndTime+'';
 						$('.start-end-time').html(UnixToDate(data.demand.dStartTime.substr(0,10),'Y.m.d')+'-'+UnixToDate(data.demand.dEndTime.substr(0,10),'Y.m.d'));
@@ -264,7 +266,11 @@
 						
 
 					}else{
-						alert('无该商演详情信息');
+						if(data.dec){
+							alert(data.dec);
+						}else{
+							alert('无该商演详情信息');
+						}
 					}
 					
 				}

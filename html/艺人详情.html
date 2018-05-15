@@ -127,7 +127,7 @@
 						<span>￥</span>
 						<span class="aMoney">55660</span>
 					</div>
-					<div class="df-b dis-flex ajob">
+					<div class="df-b dis-flex ajob" style="overflow-x: auto;">
 						<!-- <span class="desc">风情舞</span> -->
 						<!-- <span class="desc">异域舞</span> -->
 						<!-- <span class="desc">反串</span> -->
@@ -191,7 +191,7 @@
 				</div>
 				<div class="card-comment">
 					<div class="cc-banner">
-						<div class="assess-one-comment">
+						<div class="assess-one-comment jmlc">
 							<p>1、6:00 岁月给予我们的，也不过是越活越明白越活越真实，</p>
 							<p>2、6:00 只要打开心窗，让心灵与万物交融，</p>
 							<p>3、6:00 岁月给予我们的，也不过是越活越明白越活越真实，</p>
@@ -353,11 +353,11 @@
 						$('.df-a span').eq(0).html(data.artist.aName)			
 						$('.height').html(data.artist.aHeight)
 						$('.weight').html(data.artist.aWeight)
-						$('.art_intro').html(data.artist.aInfo)
+						$('.art_intro').html(data.artist.a_adept)
 						$('.city-btn').html(data.artist.aServiceCity)
 						$('.aFunsNum').html(data.artist.aFansNum)
 						$('.artist_pic img').attr('src',img_path+data.artist.aPic)
-
+						$('.jmlc').html(data.artist.aInfo);
 						
 						if(data.artist.roleName == '男性'){
 							$('.desc-sex img').attr('src','img/男性icon@2x.png')
@@ -455,8 +455,9 @@
 										html += '<span class="light-star"></span>';
 										html += '<span class="light-star"></span>';
 										html += '<span class="light-star"></span>';
-										html += '<span class="gray-star"></span>';
-										html += '<span class="gray-star"></span>';
+										html += '<span class="light-star"></span>';
+										html += '<span class="light-star"></span>';
+										// html += '<span class="gray-star"></span>';
 									html += '</div>';
 								html += '</div>';
 								html += '<div class="assess-one-comment">';
